@@ -120,6 +120,7 @@ export function Navbar() {
 
             <a
               href="#contact"
+              aria-label="Scroll to Contact section"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all shadow-xs"
             >
               <span>Contact</span>

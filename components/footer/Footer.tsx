@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/icons';
 
 export function Footer() {
@@ -20,7 +20,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-zinc-100 dark:border-zinc-800/80">
           {/* Brand Info */}
-          <div className="md:col-span-6 space-y-3">
+          <div className="md:col-span-5 space-y-3">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-mono text-xs font-bold">
                 SP
@@ -28,6 +28,9 @@ export function Footer() {
               <span className="text-base font-bold text-zinc-950 dark:text-white tracking-tight">
                 SIBIN P
               </span>
+            </div>
+            <div className="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold">
+              Full Stack Developer
             </div>
             <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-sm leading-relaxed">
               Full Stack Developer specializing in Python, Django REST Framework, React, and PostgreSQL. Building practical, scalable, and maintainable software.
@@ -52,28 +55,40 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Connect */}
-          <div className="md:col-span-2">
+          {/* Direct Contact Links */}
+          <div className="md:col-span-3">
             <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-3">
-              Connect
+              Direct Contact
             </div>
-            <div className="space-y-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+            <div className="space-y-2.5 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+              <a
+                href="mailto:puthramannilshibin@gmail.com"
+                aria-label="Send email to Sibin P"
+                className="flex items-center gap-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors break-all"
+              >
+                <Mail className="w-3.5 h-3.5 shrink-0 text-indigo-600 dark:text-indigo-400" />
+                <span>puthramannilshibin@gmail.com</span>
+              </a>
+
+              <a
+                href="tel:+918590675644"
+                aria-label="Call Sibin P"
+                className="flex items-center gap-2 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                <span>+91 8590675644</span>
+              </a>
+
               <a
                 href="https://github.com/shibinputhramannil/sibin-p"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 hover:text-zinc-950 dark:hover:text-white transition-colors"
+                aria-label="View Sibin P GitHub"
+                className="flex items-center gap-2 hover:text-zinc-950 dark:hover:text-white transition-colors"
               >
-                <GithubIcon className="w-3.5 h-3.5" />
-                <span>GitHub</span>
+                <GithubIcon className="w-3.5 h-3.5 shrink-0" />
+                <span>GitHub Profile</span>
                 <ArrowUpRight className="w-3 h-3 text-zinc-400" />
-              </a>
-              <a
-                href="mailto:puthramannilshibin@gmail.com"
-                className="flex items-center gap-1.5 hover:text-zinc-950 dark:hover:text-white transition-colors"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email</span>
               </a>
             </div>
           </div>

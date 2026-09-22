@@ -50,6 +50,7 @@ export function Hero() {
 
               <a
                 href="#contact"
+                aria-label="Scroll to Contact section"
                 className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/80 text-zinc-800 dark:text-zinc-200 font-medium text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-200 active:scale-[0.98]"
               >
                 <Mail className="w-4 h-4" />
