@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/']
     },
-    sitemap: 'https://sibin-p-portfolio.vercel.app/sitemap.xml'
+    sitemap: 'https://portfolio-shibin1.vercel.app/sitemap.xml'
   };
 }

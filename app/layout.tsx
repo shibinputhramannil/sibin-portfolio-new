@@ -32,14 +32,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Sibin P', url: 'https://github.com/shibinputhramannil/sibin-p' }],
   creator: 'Sibin P',
-  metadataBase: new URL('https://sibin-p-portfolio.vercel.app'),
+  metadataBase: new URL('https://portfolio-shibin1.vercel.app'),
   alternates: {
     canonical: '/'
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://sibin-p-portfolio.vercel.app',
+    url: 'https://portfolio-shibin1.vercel.app',
     siteName: 'Sibin P - Portfolio',
     title: 'Sibin P | Full Stack Developer',
     description:
