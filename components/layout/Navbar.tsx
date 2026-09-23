@@ -107,7 +107,7 @@ export function Navbar() {
             </a>
 
             <a
-              href="/resume/sibin-p-full-stack-developer-resume.pdf"
+              href="/resume/sibin-p-full-stack-developer-resume.pdf?v=20260923"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
@@ -177,7 +177,7 @@ export function Navbar() {
                 <span>GitHub</span>
               </a>
               <a
-                href="/resume/sibin-p-full-stack-developer-resume.pdf"
+                href="/resume/sibin-p-full-stack-developer-resume.pdf?v=20260923"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 py-2 text-xs font-medium rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-950"

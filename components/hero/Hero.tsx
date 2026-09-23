@@ -58,7 +58,7 @@ export function Hero() {
               </a>
 
               <a
-                href="/resume/sibin-p-full-stack-developer-resume.pdf"
+                href="/resume/sibin-p-full-stack-developer-resume.pdf?v=20260923"
                 download="sibin-p-full-stack-developer-resume.pdf"
                 aria-label="Download Sibin P resume"
                 className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-zinc-300 dark:hover:border-zinc-700 font-medium text-sm transition-colors"
@@ -69,7 +69,7 @@ export function Hero() {
               </a>
 
               <a
-                href="/resume/sibin-p-full-stack-developer-resume.pdf"
+                href="/resume/sibin-p-full-stack-developer-resume.pdf?v=20260923"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="View Sibin P resume"
