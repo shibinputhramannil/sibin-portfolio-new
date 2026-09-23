@@ -80,7 +80,7 @@ export function Footer() {
               </a>
 
               <a
-                href="https://github.com/shibinputhramannil/sibin-p"
+                href="https://github.com/shibinputhramannil"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="View Sibin P GitHub"

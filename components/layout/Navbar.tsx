@@ -97,7 +97,7 @@ export function Navbar() {
           {/* Right Action Icons & CTA */}
           <div className="hidden sm:flex items-center gap-2.5">
             <a
-              href="https://github.com/shibinputhramannil/sibin-p"
+              href="https://github.com/shibinputhramannil"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
@@ -107,7 +107,7 @@ export function Navbar() {
             </a>
 
             <a
-              href="/resume/sibin-p-resume.html"
+              href="/resume/sibin-p-resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
@@ -168,7 +168,7 @@ export function Navbar() {
             })}
             <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between gap-3">
               <a
-                href="https://github.com/shibinputhramannil/sibin-p"
+                href="https://github.com/shibinputhramannil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 py-2 text-xs font-medium rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300"
@@ -177,7 +177,7 @@ export function Navbar() {
                 <span>GitHub</span>
               </a>
               <a
-                href="/resume/sibin-p-resume.html"
+                href="/resume/sibin-p-resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 py-2 text-xs font-medium rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-950"

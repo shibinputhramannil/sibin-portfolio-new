@@ -134,7 +134,7 @@ export const projects: Project[] = [
       'Relational database normalization for products, orders, and line items',
       'Django ORM query optimizations to prevent N+1 query overhead'
     ],
-    githubUrl: 'https://github.com/shibinputhramannil/sibin-p',
+    githubUrl: 'https://github.com/shibinputhramannil',
     featured: false
   },
   {
@@ -161,7 +161,7 @@ export const projects: Project[] = [
       'Clean separation between data model classes and user interface controllers',
       'Robust error handling for invalid operations and storage exceptions'
     ],
-    githubUrl: 'https://github.com/shibinputhramannil/sibin-p',
+    githubUrl: 'https://github.com/shibinputhramannil',
     featured: false
   }
 ];

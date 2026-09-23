@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { ArrowRight, Mail, Download, Code2 } from 'lucide-react';
+import { ArrowRight, Mail, Download, Eye, Code2 } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/icons';
 import { HeroVisual } from './HeroVisual';
 import { Badge } from '@/components/ui/Badge';
@@ -58,22 +58,35 @@ export function Hero() {
               </a>
 
               <a
-                href="/resume/sibin-p-resume.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-zinc-600 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium text-sm transition-colors"
-                title="View and download verified resume"
+                href="/resume/sibin-p-resume.pdf"
+                download="Sibin-P-Resume.pdf"
+                aria-label="Download Sibin P resume"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-zinc-300 dark:hover:border-zinc-700 font-medium text-sm transition-colors"
+                title="Download verified resume PDF"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Resume</span>
               </a>
 
               <a
-                href="https://github.com/shibinputhramannil/sibin-p"
+                href="/resume/sibin-p-resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Sibin P resume"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-zinc-300 dark:hover:border-zinc-700 font-medium text-sm transition-colors"
+                title="View verified resume PDF in new tab"
+              >
+                <Eye className="w-4 h-4" />
+                <span>View Resume</span>
+              </a>
+
+              <a
+                href="https://github.com/shibinputhramannil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-all"
                 aria-label="GitHub Profile of Sibin P"
+                title="GitHub Profile"
               >
                 <GithubIcon className="w-4 h-4" />
               </a>

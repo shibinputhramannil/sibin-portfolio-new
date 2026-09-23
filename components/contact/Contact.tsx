@@ -14,7 +14,7 @@ export function Contact() {
   const phoneTel = 'tel:+918590675644';
   const emailMailtoCTA = 'mailto:puthramannilshibin@gmail.com?subject=Portfolio%20Contact';
   const location = 'Malappuram, Perinthalmanna, Kerala, India';
-  const github = 'https://github.com/shibinputhramannil/sibin-p';
+  const github = 'https://github.com/shibinputhramannil';
 
   const handleCopyEmail = async () => {
     try {

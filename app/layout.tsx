@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     'AI Engineer',
     'Software Engineer India'
   ],
-  authors: [{ name: 'Sibin P', url: 'https://github.com/shibinputhramannil/sibin-p' }],
+  authors: [{ name: 'Sibin P', url: 'https://github.com/shibinputhramannil' }],
   creator: 'Sibin P',
   metadataBase: new URL('https://portfolio-shibin1.vercel.app'),
   alternates: {
@@ -77,7 +77,7 @@ export default function RootLayout({
     jobTitle: 'Full Stack Developer',
     description:
       'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
-    url: 'https://github.com/shibinputhramannil/sibin-p',
+    url: 'https://portfolio-shibin1.vercel.app',
     sameAs: ['https://github.com/shibinputhramannil'],
     knowsAbout: [
       'Python',

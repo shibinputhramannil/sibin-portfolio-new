@@ -9,20 +9,10 @@ export function HeroVisual() {
 
   return (
     <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
-      {/* Subtle background glow */}
-      <div
-        className="absolute -top-12 -right-8 w-72 h-72 bg-indigo-500/10 dark:bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-8 -left-8 w-60 h-60 bg-blue-500/10 dark:bg-blue-500/15 rounded-full blur-2xl pointer-events-none"
-        aria-hidden="true"
-      />
-
       <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-6">
         {/* Real Profile Portrait Card */}
-        <div className="relative group shrink-0">
-          <div className="relative w-56 h-64 sm:w-60 sm:h-72 rounded-2xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800 shadow-xl bg-zinc-100 dark:bg-zinc-900 transition-transform duration-300 group-hover:scale-[1.02]">
+        <div className="relative shrink-0">
+          <div className="relative w-56 h-64 sm:w-60 sm:h-72 rounded-2xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800 shadow-md bg-zinc-100 dark:bg-zinc-900">
             {!imageError ? (
               <Image
                 src="/images/sibin.png"
@@ -30,7 +20,7 @@ export function HeroVisual() {
                 fill
                 priority
                 sizes="(max-width: 640px) 224px, 240px"
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                className="object-cover object-top"
                 onError={() => setImageError(true)}
               />
             ) : (
@@ -42,19 +32,6 @@ export function HeroVisual() {
                 <div className="text-xs text-zinc-500 font-mono mt-1">Full Stack Developer</div>
               </div>
             )}
-
-            {/* Bottom Glass Badge */}
-            <div className="absolute inset-x-2 bottom-2 p-2.5 rounded-xl bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border border-zinc-200/70 dark:border-zinc-800/80 shadow-xs">
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-                </span>
-                <span className="text-[11px] font-semibold text-zinc-800 dark:text-zinc-200">
-                  Open to Opportunities
-                </span>
-              </div>
-            </div>
           </div>
         </div>
 
