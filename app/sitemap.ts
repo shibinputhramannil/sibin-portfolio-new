@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://sibin-p.vercel.app';
+  const baseUrl = 'https://portfolio-opal-rho-gohellvu8t.vercel.app';
 
   return [
     {

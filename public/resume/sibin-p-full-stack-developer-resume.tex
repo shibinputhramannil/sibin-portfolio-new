@@ -1,0 +1,132 @@
+\documentclass[a4paper,9pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=10mm,top=8mm,bottom=8mm]{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\definecolor{linkblue}{HTML}{0B57D0}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    urlcolor=linkblue,
+    pdfauthor={SIBIN P},
+    pdftitle={SIBIN P - Full Stack Developer Resume},
+    pdfsubject={ATS-Friendly Resume}
+}
+
+% Section formatting
+\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{5pt}{3pt}
+
+% List formatting
+\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=15pt}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% HEADER
+\begin{center}
+    {\LARGE \textbf{SIBIN P}}\\[2pt]
+    {\small \textbf{FULL STACK DEVELOPER}}\\[3pt]
+    {\footnotesize
+        \href{tel:+918590675644}{+91 8590675644} \enspace|\enspace
+        \href{mailto:puthramannilshibin@gmail.com}{puthramannilshibin@gmail.com} \enspace|\enspace
+        Malappuram, Perinthalmanna\\[2pt]
+        GitHub: \href{https://github.com/shibinputhramannil}{github.com/shibinputhramannil} \enspace|\enspace
+        Portfolio: \href{https://portfolio-opal-rho-gohellvu8t.vercel.app/}{portfolio-opal-rho-gohellvu8t.vercel.app}
+    }
+\end{center}
+
+\vspace{-4pt}
+
+% PROFESSIONAL SUMMARY
+\section*{Professional Summary}
+Full Stack Developer specializing in Python, Django, Django REST Framework, and PostgreSQL, with hands-on experience building database-driven applications and responsive user interfaces in React. Experienced in developing robust REST APIs, relational schemas, and modular ERP/CRM platforms with tenant isolation. Solid foundation in machine learning and artificial intelligence, with a focus on writing clean, maintainable, and pragmatic code.
+
+% TECHNICAL SKILLS
+\section*{Technical Skills}
+\begin{description}[noitemsep, topsep=1pt, leftmargin=75pt, font=\normalfont\textbf]
+    \item[Programming:] Python, SQL, HTML, CSS, JavaScript, TypeScript (Basic)
+    \item[Backend:] Django, Django REST Framework, Flask, REST API Development
+    \item[Frontend:] React, HTML, CSS, JavaScript, TypeScript
+    \item[Databases:] PostgreSQL, MySQL, MongoDB, SQLite
+    \item[Data \& AI:] Pandas, NumPy, Machine Learning, Artificial Intelligence, Deep Learning, PCA, ANN
+    \item[Tools:] Git, GitHub, VS Code, PyCharm, Postman, Jupyter Notebook
+    \item[Core:] Data Structures \& Algorithms, OOP, Database Management, Problem Solving
+\end{description}
+
+% PROJECT EXPERIENCE
+\section*{Project Experience}
+\href{https://github.com/shibinputhramannil/IcorpERP}{\textbf{ICORP ERP \& CRM PLATFORM}} [\href{https://github.com/shibinputhramannil/IcorpERP}{GitHub}] \hfill \textit{Ongoing Project}\\
+\textit{Django REST Framework, PostgreSQL, REST APIs, Git, Postman}
+\begin{itemize}
+    \item Developing backend modules for an ERP and CRM platform using Django REST Framework and PostgreSQL.
+    \item Building REST APIs with serializers and CRUD operations for core business entities.
+    \item Working on CRM functionality including Companies, Contacts, and Leads with tenant isolation.
+    \item Planning AI integration as part of the broader ERP platform roadmap.
+    \item Using Git/GitHub for source control and Postman for API testing and validation.
+\end{itemize}
+
+\vspace{2pt}
+\href{https://github.com/shibinputhramannil/Face_Recognition-PCA-ANN}{\textbf{FACE RECOGNITION PIPELINE (PCA \& ANN)}} [\href{https://github.com/shibinputhramannil/Face_Recognition-PCA-ANN}{GitHub}] \hfill \textit{Completed}\\
+\textit{Python, NumPy, OpenCV, PCA, ANN}
+\begin{itemize}
+    \item Implemented surrogate covariance PCA for eigenface feature extraction and dimensionality reduction.
+    \item Built and evaluated an Artificial Neural Network (ANN) classification model using backpropagation with custom confidence thresholding.
+\end{itemize}
+
+\vspace{2pt}
+\href{https://github.com/shibinputhramannil}{\textbf{DJANGO E-COMMERCE APPLICATION (DJANGO FLIPKART)}} [\href{https://github.com/shibinputhramannil}{GitHub}] \hfill \textit{Completed}\\
+\textit{Python, Django, PostgreSQL, SQLite, JavaScript}
+\begin{itemize}
+    \item Developed a database-driven e-commerce platform with product catalogs, category filtering, and session-backed cart management.
+    \item Implemented secure user authentication, order processing, and optimized Django ORM queries to prevent performance bottlenecks.
+\end{itemize}
+
+\vspace{2pt}
+\href{https://github.com/shibinputhramannil/CORRIDOR}{\textbf{REDUX E-COMMERCE PLATFORM (CORRIDOR B2B)}} [\href{https://github.com/shibinputhramannil/CORRIDOR}{GitHub}] \hfill \textit{Completed}\\
+\textit{React, Next.js, TypeScript, Redux Toolkit, Tailwind CSS}
+\begin{itemize}
+    \item Developed a structured trade platform featuring quotation management (RFQ) and multi-attribute product comparison matrices.
+    \item Managed centralized application state using Redux Toolkit slices with strict TypeScript type safety.
+\end{itemize}
+
+% EXPERIENCE
+\section*{Experience}
+\textbf{CRM DEVELOPER INTERN} \hfill 24 July 2026 -- 18 September 2026\\
+\textit{Upcode Software Labs Pvt. Ltd.}
+\begin{itemize}
+    \item Worked on development of a live CRM project using Django, Django REST Framework, PostgreSQL, and ReactJS.
+    \item Analyzed and implemented business requirements, building clean RESTful API endpoints and relational schemas.
+    \item Collaborated on frontend integration and conducted comprehensive API endpoint testing using Postman.
+\end{itemize}
+
+\vspace{2pt}
+\textbf{ARTIFICIAL INTELLIGENCE INTERN} \hfill 6 April 2026 -- 9 August 2026\\
+\textit{Internship Studio, Pune}
+\begin{itemize}
+    \item Worked on a face recognition project using Principal Component Analysis (PCA) and Artificial Neural Networks (ANN).
+    \item Performed data preprocessing and feature extraction using PCA.
+    \item Built and evaluated ANN models for face recognition using backpropagation algorithms.
+\end{itemize}
+
+% EDUCATION
+\section*{Education}
+\textbf{Bachelor Degree} \hfill Completed\\
+\textit{MES Kalladi College}
+
+% CERTIFICATIONS
+\section*{Certifications}
+\begin{itemize}
+    \item \textbf{Python Full Stack Developer} \enspace|\enspace Upcode Software Labs \hfill 12 January 2026 -- 18 September 2026
+    \item \textbf{CRM Developer Internship} \enspace|\enspace Upcode Software Labs \hfill 24 July 2026 -- 18 September 2026
+    \item \textbf{Artificial Intelligence Internship} \enspace|\enspace Internship Studio \hfill 6 April 2026 -- 9 August 2026
+\end{itemize}
+
+\end{document}

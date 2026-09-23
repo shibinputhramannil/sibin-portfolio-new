@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/']
     },
-    sitemap: 'https://sibin-p.vercel.app/sitemap.xml'
+    sitemap: 'https://portfolio-opal-rho-gohellvu8t.vercel.app/sitemap.xml'
   };
 }

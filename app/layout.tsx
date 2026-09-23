@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { PwaManager } from '@/components/pwa/PwaManager';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,14 +33,15 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Sibin P', url: 'https://github.com/shibinputhramannil' }],
   creator: 'Sibin P',
-  metadataBase: new URL('https://sibin-p.vercel.app'),
+  metadataBase: new URL('https://portfolio-opal-rho-gohellvu8t.vercel.app'),
+  manifest: '/manifest.json',
   alternates: {
     canonical: '/'
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://sibin-p.vercel.app',
+    url: 'https://portfolio-opal-rho-gohellvu8t.vercel.app',
     siteName: 'Sibin P - Portfolio',
     title: 'Sibin P | Full Stack Developer',
     description:
@@ -61,7 +63,14 @@ export const metadata: Metadata = {
     images: ['/images/sibin.png']
   },
   icons: {
-    icon: '/favicon.ico'
+    icon: [
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.ico' }
+    ],
+    apple: [
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ]
   }
 };
 
@@ -77,7 +86,7 @@ export default function RootLayout({
     jobTitle: 'Full Stack Developer',
     description:
       'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
-    url: 'https://sibin-p.vercel.app',
+    url: 'https://portfolio-opal-rho-gohellvu8t.vercel.app',
     sameAs: ['https://github.com/shibinputhramannil'],
     knowsAbout: [
       'Python',
@@ -100,6 +109,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
     >
       <head>
+        <meta name="theme-color" content="#09090b" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -113,6 +125,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <PwaManager />
         </ThemeProvider>
       </body>
     </html>
