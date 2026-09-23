@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://portfolio-shibin1.vercel.app';
+  const baseUrl = 'https://portfolio-opal-rho-gohellvu8t.vercel.app';
 
   return [
     {
@@ -12,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/resume/sibin-p-resume.html`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8
+    },
+    {
+      url: `${baseUrl}/resume/sibin-p-full-stack-developer-resume.pdf`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8

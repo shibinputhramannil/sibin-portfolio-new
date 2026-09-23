@@ -32,14 +32,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Sibin P', url: 'https://github.com/shibinputhramannil' }],
   creator: 'Sibin P',
-  metadataBase: new URL('https://portfolio-shibin1.vercel.app'),
+  metadataBase: new URL('https://portfolio-opal-rho-gohellvu8t.vercel.app'),
   alternates: {
     canonical: '/'
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://portfolio-shibin1.vercel.app',
+    url: 'https://portfolio-opal-rho-gohellvu8t.vercel.app',
     siteName: 'Sibin P - Portfolio',
     title: 'Sibin P | Full Stack Developer',
     description:
@@ -77,7 +77,7 @@ export default function RootLayout({
     jobTitle: 'Full Stack Developer',
     description:
       'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
-    url: 'https://portfolio-shibin1.vercel.app',
+    url: 'https://portfolio-opal-rho-gohellvu8t.vercel.app',
     sameAs: ['https://github.com/shibinputhramannil'],
     knowsAbout: [
       'Python',
