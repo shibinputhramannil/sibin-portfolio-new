@@ -3,40 +3,84 @@ import { Project } from '@/types';
 export const projects: Project[] = [
   {
     id: 'icorp-erp',
-    title: 'ICORP ERP & CRM Platform',
-    tagline: 'Enterprise Resource Planning & Business Management Architecture',
+    title: 'ICORP ERP Platform',
+    tagline: 'Multi-Tenant Enterprise Resource Planning & Operations Architecture',
     description:
-      'An ongoing enterprise ERP and CRM platform engineered for scalable business management, tenant isolation, and modular services using Django REST Framework and PostgreSQL with planned AI capabilities.',
+      'A production-ready, multi-tenant Enterprise Resource Planning system engineered for corporate business management, tenant isolation, and modular services using Django REST Framework and PostgreSQL with integrated AI Assistant capabilities.',
     longDescription:
-      'IcorpERP is designed to streamline multi-department business operations through robust relational database schemas and RESTful web services. The platform implements multi-tenant data isolation, centralized company and contact directories, lead tracking, and authenticated API endpoints tested with Postman.',
+      'ICORP ERP is a production-ready enterprise platform uniting multi-company business boundaries, department and employee directories, advanced inventory logistics, full lifecycle sales and purchasing, strict double-entry finance, interactive workspace collaboration (real-time notes, email, document center, calendar), and an integrated AI operational assistant into a unified corporate system.',
     category: 'Full Stack',
-    status: 'ONGOING',
+    status: 'COMPLETED',
     technologies: [
+      'Django 6.1',
       'Django REST Framework',
-      'Python',
-      'PostgreSQL',
-      'React',
+      'PostgreSQL 16',
+      'React (Vite)',
+      'Material-UI (MUI)',
+      'Docker & Docker Compose',
       'REST APIs',
-      'Git',
       'Postman',
-      'Database Modeling'
+      'Database Modeling',
+      'AI Operational Assistant'
     ],
     documentedModules: [
-      'Tenant Isolation & Multi-organization boundaries',
-      'Company Directory & Profile Management',
-      'Contacts & People Relationship Mapping',
-      'Leads Management & Qualification Pipeline',
-      'JWT / Token-based Secure Authentication',
-      'Standardized CRUD Endpoints & Error Handling',
-      'PostgreSQL Schema Migrations & Integrity Constraints'
+      'Multi-Tenant Isolation & Multi-company boundaries',
+      'Department & Employee Directory Management',
+      'Dynamic Inventory Control & Stock Valuation',
+      'Sales Orders, Invoicing & Payment Tracking',
+      'Purchase Orders & Supplier Workflows',
+      'Double-Entry Financial Accounting & General Ledgers',
+      'Integrated AI Operational Assistant',
+      'Workspace Collaboration (Notes, Calendar, Documents)'
     ],
     architectureHighlights: [
-      'Separation of concerns between business domain logic and API serialization',
-      'Relational integrity enforced at database layer with foreign key indexing',
-      'API contracts verified with Postman automated collections',
-      'Extensible foundation engineered for future AI workflow integrations'
+      'Strict multi-tenant boundaries with foreign key indexing and relational integrity constraints',
+      'Decoupled service layer between core business rules and REST API serialization',
+      'Automated test suites validating multi-tenant permissions and transaction safety',
+      'Docker multi-container orchestration for backend API, PostgreSQL, and frontend'
     ],
     githubUrl: 'https://github.com/shibinputhramannil/IcorpERP',
+    featured: true
+  },
+  {
+    id: 'enterprise-crm',
+    title: 'Enterprise CRM Platform',
+    tagline: 'Customer Relationship Management & Automated Sales Pipeline',
+    description:
+      'A full-stack, enterprise-grade CRM system featuring automated lead management, multi-stage sales deals, customer support ticketing, and Twilio-powered direct and bridge voice call integrations.',
+    longDescription:
+      'Developed as a production CRM application with React 19/Vite frontend and Django 6 REST Framework backend. It delivers comprehensive customer relationship lifecycle management including company directories, lead capture and qualification, deal stage progression, customer support ticketing, activity audit timelines, and programmatic voice calling via Twilio API with automated simulation fallback.',
+    category: 'Full Stack',
+    status: 'COMPLETED',
+    technologies: [
+      'React 19',
+      'Vite',
+      'Material-UI (MUI)',
+      'Django 6',
+      'Django REST Framework',
+      'PostgreSQL 17',
+      'SimpleJWT',
+      'Twilio Voice API',
+      'Docker Compose',
+      'GitHub Actions CI/CD'
+    ],
+    documentedModules: [
+      'Companies Directory & Organizational Hierarchy',
+      'Leads Management & Qualification Pipeline',
+      'Deals Pipeline with Stage Progression Tracking',
+      'Customer Support Tickets & Escalation Workflows',
+      'Twilio Voice Calling (Direct Call & Bridge Call API)',
+      'Activity Timeline, Task Scheduling & Reminders',
+      'SimpleJWT Authentication & Role-Based Access Control',
+      'GitHub Actions Automated CI/CD Pipelines'
+    ],
+    architectureHighlights: [
+      'Twilio telecommunication integration supporting live calls with resilient simulated mode fallback',
+      'Normalized PostgreSQL 17 relational schemas across leads, deals, tickets, and calls',
+      'Role-based permission guards (Admin, Sales Reps, Managers) with JWT token refresh',
+      'Containerized multi-service deployment with Docker Compose and GitHub Actions testing'
+    ],
+    githubUrl: 'https://github.com/shibinputhramannil',
     featured: true
   },
   {

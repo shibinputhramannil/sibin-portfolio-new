@@ -21,7 +21,7 @@ export function About() {
     },
     {
       title: 'ERP & CRM Platforms',
-      description: 'Contributing to ongoing enterprise resource planning modules including company, contact, and lead management.',
+      description: 'Architecting comprehensive enterprise systems across ERP operations (inventory, sales, finance) and CRM lead management.',
       icon: ShieldCheck
     },
     {
@@ -51,7 +51,7 @@ export function About() {
               My hands-on experience includes developing live CRM systems at Upcode Software Labs, where I worked directly with business specifications, implemented Django REST Framework endpoints, managed PostgreSQL database schemas, and interfaced with ReactJS.
             </p>
             <p>
-              Currently, I am actively contributing to an ongoing enterprise ERP and CRM platform (<span className="text-zinc-900 dark:text-zinc-200 font-semibold">IcorpERP</span>) focused on company hierarchies, tenant isolation, contacts, and lead progression pipelines, with planned artificial intelligence workflow integrations.
+              I have engineered two core enterprise systems: a production-ready enterprise ERP platform (<span className="text-zinc-900 dark:text-zinc-200 font-semibold">IcorpERP</span>) unifying multi-tenant inventory, sales, purchasing, double-entry finance, and AI assistance, alongside a dedicated <span className="text-zinc-900 dark:text-zinc-200 font-semibold">Enterprise CRM Platform</span> with automated pipelines and Twilio voice integrations.
             </p>
             <p>
               In parallel, during my Artificial Intelligence internship at Internship Studio, I engineered machine learning pipelines from fundamental principles—implementing PCA surrogate covariance algorithms for facial feature extraction and training multi-layer neural networks via backpropagation.

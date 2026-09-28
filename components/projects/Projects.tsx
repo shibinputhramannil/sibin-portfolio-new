@@ -36,19 +36,19 @@ export function Projects() {
           </p>
         </div>
 
-        {/* PRIMARY FEATURED PROJECT: ICORP ERP & CRM */}
+        {/* PRIMARY FEATURED PROJECT: ICORP ERP */}
         <div className="mt-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-lg overflow-hidden transition-all hover:border-indigo-400/80 dark:hover:border-indigo-600/80">
           <div className="p-6 sm:p-8 lg:p-10">
             <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-zinc-100 dark:border-zinc-800">
               <div className="flex flex-wrap items-center gap-2.5">
                 <Badge variant="accent">
-                  <span className="w-2 h-2 rounded-full bg-indigo-500 animate-ping mr-1" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 mr-1" />
                   <span>PRIMARY FEATURED PROJECT</span>
                 </Badge>
-                <Badge variant="accent">
-                  <span>Status: ONGOING</span>
+                <Badge variant="success">
+                  <span>Status: COMPLETED</span>
                 </Badge>
-                <Badge variant="neutral">Enterprise ERP & CRM</Badge>
+                <Badge variant="neutral">Enterprise ERP Platform</Badge>
               </div>
 
               <div className="flex items-center gap-3">
@@ -139,15 +139,15 @@ export function Projects() {
                     <span className="text-right font-medium">Postman Automated Suites</span>
                   </div>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-zinc-400 dark:text-zinc-500">Planned Feature:</span>
-                    <span className="text-right font-medium text-indigo-600 dark:text-indigo-400">
-                      Applied AI Modules
+                    <span className="text-zinc-400 dark:text-zinc-500">AI Capabilities:</span>
+                    <span className="text-right font-medium text-emerald-600 dark:text-emerald-400">
+                      Integrated AI Assistant
                     </span>
                   </div>
                 </div>
 
                 <div className="pt-2 text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal border-t border-zinc-200/60 dark:border-zinc-700/60">
-                  Actively under development with verified walk-through phases for Inventory, Sales Foundation, and Purchasing.
+                  Production-ready enterprise platform (v1.1.0) with complete modules for Inventory, Sales, Purchasing, Accounting, and Workspace Collaboration.
                 </div>
               </div>
             </div>
