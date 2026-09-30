@@ -62,6 +62,7 @@ export function About() {
               <Badge variant="neutral">Django REST</Badge>
               <Badge variant="neutral">PostgreSQL</Badge>
               <Badge variant="neutral">React</Badge>
+              <Badge variant="neutral">Redux Toolkit</Badge>
               <Badge variant="neutral">PCA / ANN</Badge>
               <Badge variant="neutral">Postman</Badge>
               <Badge variant="neutral">Git</Badge>

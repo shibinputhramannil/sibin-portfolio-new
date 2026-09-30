@@ -84,6 +84,47 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    id: 'transt-ecommerce',
+    title: 'TRANST Botanical E-Commerce Platform',
+    tagline: 'Production-Ready Botanical Lifestyle E-Commerce with Django REST & Redux Toolkit',
+    description:
+      'A production-ready botanical lifestyle e-commerce application engineered with Django REST Framework and React/Redux Toolkit, featuring stateless JWT auth, server-authoritative cart validation, and atomic checkout transactions.',
+    longDescription:
+      'TRANST is a full-stack botanical e-commerce application providing an end-to-end customer journey from dynamic catalog discovery, multi-faceted filtering, and server-authoritative shopping cart management to secure checkout with atomic database transactions (transaction.atomic()) and automated stock decrementation. Powered by Django REST Framework and React with Redux Toolkit and Tailwind CSS.',
+    category: 'Full Stack',
+    status: 'COMPLETED',
+    technologies: [
+      'Django REST Framework',
+      'Python',
+      'React 18',
+      'Redux Toolkit',
+      'PostgreSQL',
+      'Tailwind CSS',
+      'SimpleJWT',
+      'Axios Interceptors',
+      'Atomic Transactions',
+      'REST APIs'
+    ],
+    documentedModules: [
+      'Stateless SimpleJWT Authentication & Protected Routes',
+      'Multi-category Product Catalog & Filter Pipeline',
+      'Server-Authoritative Persistent Shopping Cart',
+      'Atomic Checkout & Automated Stock Decrementation',
+      'Historical Price Snapshot Freezing on Orders',
+      'Cross-Tenant User Order Isolation & Receipts',
+      'Botanical Design System & Responsive UI Layouts',
+      'Centralized Redux Slice State & Thunk Architecture'
+    ],
+    architectureHighlights: [
+      'Atomic database transactions (transaction.atomic()) prevent race conditions during inventory deduction',
+      'Server-authoritative cart validation guarantees stock integrity against client-side tampering',
+      'Historical price freezing preserves exact purchase costs regardless of subsequent catalog updates',
+      'Axios request/response interceptors automatically manage token refreshing and session persistence'
+    ],
+    githubUrl: 'https://github.com/shibinputhramannil/transt-ecommerce',
+    featured: true
+  },
+  {
     id: 'face-recognition-pca-ann',
     title: 'Face Recognition Pipeline (PCA & ANN)',
     tagline: 'Computer Vision & Deep Learning Feature Extraction',
