@@ -2,6 +2,13 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ------------------------------------------------------------------
+   Design tokens
+   Raw values live on :root / .dark so they switch with the theme.
+   @theme inline below registers them as Tailwind utilities
+   (bg-surface, text-heading, border-line, max-w-content, ...).
+   ------------------------------------------------------------------ */
+
 :root {
   --background: #fafafa;
   --foreground: #09090b;
@@ -14,10 +21,27 @@
   --accent-foreground: #ffffff;
   --accent-light: #eef2ff;
   --ring: #6366f1;
+
+  /* Editorial redesign tokens */
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --text: #3f3f46;
+  --heading: #09090b;
+  --line: #e4e4e7;
+  --line-strong: #d4d4d8;
+  --accent-from: #4f46e5;
+  --accent-to: #0891b2;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 400ms;
 }
 
 .dark {
-  --background: #09090b;
+  --background: #0a0a0a;
   --foreground: #f4f4f5;
   --card: #121215;
   --card-foreground: #fafafa;
@@ -28,6 +52,57 @@
   --accent-foreground: #ffffff;
   --accent-light: rgba(99, 102, 241, 0.12);
   --ring: #818cf8;
+
+  --surface: #18181b;
+  --surface-2: #27272a;
+  --text: #d4d4d8;
+  --heading: #ffffff;
+  --line: #27272a;
+  --line-strong: #3f3f46;
+  --accent-from: #6366f1;
+  --accent-to: #22d3ee;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-heading: var(--heading);
+  --color-muted: var(--muted-foreground);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent-from: var(--accent-from);
+  --color-accent-to: var(--accent-to);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
+@theme {
+  --container-content: 64rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-section: 5rem;
+  --spacing-section-lg: 8rem;
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility bg-accent-gradient {
+  background-image: linear-gradient(to right, var(--accent-from), var(--accent-to));
+}
+
+@utility text-accent-gradient {
+  background-image: linear-gradient(to right, var(--accent-from), var(--accent-to));
+  background-clip: text;
+  color: transparent;
 }
 
 html {
@@ -79,6 +154,12 @@ body {
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+/* Native <dialog> backdrop used by components/ui/Modal */
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.6);
+  backdrop-filter: blur(4px);
 }
 
 /* Accessibility: Respect Reduced Motion */

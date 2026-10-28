@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { PwaManager } from '@/components/pwa/PwaManager';
@@ -12,6 +12,17 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin']
+});
+
+// Editorial accent face. Not preloaded until a section above the fold uses it.
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  weight: '400',
+  style: 'italic',
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  fallback: ['Georgia', 'Times New Roman', 'serif']
 });
 
 export const metadata: Metadata = {
@@ -106,7 +117,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} scroll-smooth antialiased`}
     >
       <head>
         <meta name="theme-color" content="#09090b" />
