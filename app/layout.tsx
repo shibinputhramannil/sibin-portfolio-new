@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -25,10 +25,17 @@ const instrumentSerif = Instrument_Serif({
   fallback: ['Georgia', 'Times New Roman', 'serif']
 });
 
+const title = `${site.name} | ${site.role}`;
+
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a'
+};
+
+// All absolute URLs (canonical, Open Graph, Twitter) resolve against metadataBase,
+// which comes from the single canonical origin in lib/site.ts.
 export const metadata: Metadata = {
-  title: 'Sibin P | Full Stack Developer',
-  description:
-    'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
+  title,
+  description: site.description,
   keywords: [
     'Sibin P',
     'Full Stack Developer',
@@ -42,21 +49,25 @@ export const metadata: Metadata = {
     'AI Engineer',
     'Software Engineer India'
   ],
-  authors: [{ name: 'Sibin P', url: 'https://github.com/shibinputhramannil' }],
-  creator: 'Sibin P',
-  metadataBase: new URL('https://portfolio-opal-rho-gohellvu8t.vercel.app'),
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  metadataBase: new URL(site.url),
   manifest: '/manifest.json',
   alternates: {
     canonical: '/'
   },
+  appleWebApp: {
+    capable: true,
+    title: site.name,
+    statusBarStyle: 'black-translucent'
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://portfolio-opal-rho-gohellvu8t.vercel.app',
-    siteName: 'Sibin P - Portfolio',
-    title: 'Sibin P | Full Stack Developer',
-    description:
-      'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
+    url: '/',
+    siteName: `${site.name} - Portfolio`,
+    title,
+    description: site.description,
     images: [
       {
         url: site.ogImage.src,
@@ -68,9 +79,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sibin P | Full Stack Developer',
-    description:
-      'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
+    title,
+    description: site.description,
     images: [{ url: site.ogImage.src, alt: site.ogImage.alt }]
   },
   icons: {
@@ -90,44 +100,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Sibin P',
-    jobTitle: 'Full Stack Developer',
-    description:
-      'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
-    url: 'https://portfolio-opal-rho-gohellvu8t.vercel.app',
-    sameAs: ['https://github.com/shibinputhramannil'],
-    knowsAbout: [
-      'Python',
-      'Django',
-      'Django REST Framework',
-      'PostgreSQL',
-      'React',
-      'Next.js',
-      'REST APIs',
-      'Machine Learning',
-      'Principal Component Analysis',
-      'Artificial Neural Networks'
-    ]
-  };
-
   return (
     <html
       lang="en"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} scroll-smooth antialiased`}
     >
-      <head>
-        <meta name="theme-color" content="#09090b" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
       <body className="min-h-screen bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 selection:bg-indigo-600 selection:text-white transition-colors duration-200">
         <ThemeProvider
           attribute="class"

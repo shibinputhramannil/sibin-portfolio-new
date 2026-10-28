@@ -10,10 +10,15 @@ import { Education } from '@/components/education/Education';
 import { Contact } from '@/components/contact/Contact';
 import { Footer } from '@/components/footer/Footer';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { homeJsonLd, serializeJsonLd } from '@/lib/structured-data';
 
 export default function Home() {
   return (
     <div className="relative min-h-screen flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(homeJsonLd()) }}
+      />
       <ScrollProgress />
       <Navbar />
 

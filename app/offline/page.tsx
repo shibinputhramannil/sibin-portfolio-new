@@ -4,7 +4,11 @@ import { resume, site } from '@/lib/site';
 
 export const metadata = {
   title: 'Offline Mode | Sibin P - Full Stack Developer',
-  description: 'You are currently browsing the portfolio offline. Previously cached content remains available.'
+  description: 'You are currently browsing the portfolio offline. Previously cached content remains available.',
+  // A service-worker fallback, not content: keep it out of search results, and
+  // do not inherit the home page's canonical (noindex + foreign canonical conflict).
+  robots: { index: false, follow: true },
+  alternates: { canonical: '/offline' }
 };
 
 // Served by public/sw.js when a page cannot be fetched and is not in the cache.

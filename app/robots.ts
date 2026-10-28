@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { site } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/']
     },
-    sitemap: 'https://portfolio-opal-rho-gohellvu8t.vercel.app/sitemap.xml'
+    sitemap: `${site.url}/sitemap.xml`
   };
 }

@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
+import { resume, site } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://portfolio-opal-rho-gohellvu8t.vercel.app';
+  const baseUrl = site.url;
 
   return [
     {
@@ -11,13 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0
     },
     {
-      url: `${baseUrl}/resume/sibin-p-resume.html`,
+      url: `${baseUrl}${resume.htmlPath}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8
     },
     {
-      url: `${baseUrl}/resume/sibin-p-full-stack-developer-resume.pdf`,
+      url: `${baseUrl}${resume.pdfPath}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8
