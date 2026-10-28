@@ -36,18 +36,24 @@ export function PwaManager() {
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      // 1. Register Service Worker
+      // 1. Register Service Worker (after load, or immediately if load already fired)
+      const registerServiceWorker = () => {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then((registration) => {
+            console.log('[PWA] Service Worker registered with scope:', registration.scope);
+          })
+          .catch((err) => {
+            console.warn('[PWA] Service Worker registration failed:', err);
+          });
+      };
+
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('/sw.js')
-            .then((registration) => {
-              console.log('[PWA] Service Worker registered with scope:', registration.scope);
-            })
-            .catch((err) => {
-              console.warn('[PWA] Service Worker registration failed:', err);
-            });
-        });
+        if (document.readyState === 'complete') {
+          registerServiceWorker();
+        } else {
+          window.addEventListener('load', registerServiceWorker, { once: true });
+        }
       }
 
       // 2. Listen for BeforeInstallPromptEvent
@@ -65,6 +71,7 @@ export function PwaManager() {
       window.addEventListener('appinstalled', handleAppInstalled);
 
       return () => {
+        window.removeEventListener('load', registerServiceWorker);
         window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
         window.removeEventListener('appinstalled', handleAppInstalled);
       };
@@ -81,31 +88,29 @@ export function PwaManager() {
   };
 
   return (
-    <div
-      className="fixed bottom-4 right-4 z-40 flex items-center gap-2 pointer-events-auto select-none"
-      role="status"
-      aria-live="polite"
-    >
+    <div className="pointer-events-auto flex select-none items-center gap-2">
       {/* Optional Install Portfolio Button (only shown when supported and available) */}
       {installPrompt && !isInstalled && (
         <button
           type="button"
           onClick={handleInstallClick}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-500 active:scale-95 transition-all duration-200 cursor-pointer"
+          className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-heading px-3 py-1.5 text-xs font-semibold text-background shadow-lg transition-[opacity,transform] duration-200 hover:opacity-90 motion-safe:active:scale-95"
           title="Install Portfolio as a progressive web application"
           aria-label="Install Portfolio application"
         >
-          <Download className="w-3.5 h-3.5" />
+          <Download className="size-3.5" aria-hidden="true" />
           <span>Install App</span>
         </button>
       )}
 
-      {/* Subtle Online / Offline Status Badge */}
+      {/* Subtle Online / Offline Status Badge (text collapses to an icon on small screens) */}
       <div
-        className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-medium rounded-full shadow-md backdrop-blur-md border transition-all ${
+        role="status"
+        aria-live="polite"
+        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[11px] font-medium shadow-md backdrop-blur-md transition-colors ${
           isOnline
-            ? 'bg-white/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 border-zinc-200 dark:border-zinc-800'
-            : 'bg-amber-100/90 dark:bg-amber-950/90 text-amber-900 dark:text-amber-300 border-amber-300 dark:border-amber-700'
+            ? 'border-line bg-background/80 text-text'
+            : 'border-amber-300 bg-amber-100/90 text-amber-900 dark:border-amber-700 dark:bg-amber-950/90 dark:text-amber-300'
         }`}
         title={
           isOnline
@@ -115,15 +120,15 @@ export function PwaManager() {
       >
         {isOnline ? (
           <>
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <Wifi className="w-3 h-3 text-emerald-500" />
-            <span>Online</span>
+            <span aria-hidden="true" className="size-2 rounded-full bg-emerald-500" />
+            <Wifi className="size-3 text-emerald-500" aria-hidden="true" />
+            <span className="sr-only sm:not-sr-only">Online</span>
           </>
         ) : (
           <>
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-            <WifiOff className="w-3 h-3 text-amber-500" />
-            <span>Offline</span>
+            <span aria-hidden="true" className="size-2 animate-pulse rounded-full bg-amber-500" />
+            <WifiOff className="size-3 text-amber-500" aria-hidden="true" />
+            <span className="sr-only sm:not-sr-only">Offline</span>
           </>
         )}
       </div>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
-import { PwaManager } from '@/components/pwa/PwaManager';
+import { FloatingControls } from '@/components/layout/FloatingControls';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -131,12 +131,12 @@ export default function RootLayout({
       <body className="min-h-screen bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50 selection:bg-indigo-600 selection:text-white transition-colors duration-200">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           {children}
-          <PwaManager />
+          <FloatingControls />
         </ThemeProvider>
       </body>
     </html>

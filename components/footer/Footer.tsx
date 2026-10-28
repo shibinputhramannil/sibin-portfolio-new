@@ -1,113 +1,96 @@
 import * as React from 'react';
 import { Mail, Phone, ArrowUpRight } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/icons';
+import { Container } from '@/components/ui/Container';
+import { contact, navItems, site, social, telHref } from '@/lib/site';
 
 export function Footer() {
   const currentYear = 2026;
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Certifications', href: '#certifications' },
-    { name: 'Contact', href: '#contact' }
-  ];
-
   return (
-    <footer className="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 py-12 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-zinc-100 dark:border-zinc-800/80">
-          {/* Brand Info */}
-          <div className="md:col-span-5 space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-mono text-xs font-bold">
-                SP
-              </div>
-              <span className="text-base font-bold text-zinc-950 dark:text-white tracking-tight">
-                SIBIN P
+    // Extra bottom padding keeps the floating controls clear of the last row until
+    // the viewport is wide enough (xl) for them to sit beside the 64rem container.
+    <footer className="border-t border-line pb-28 pt-12 xl:pb-12">
+      <Container>
+        <div className="grid grid-cols-1 gap-10 border-b border-line pb-10 md:grid-cols-12 md:gap-8">
+          <div className="space-y-3 md:col-span-5">
+            <div className="flex items-center gap-2.5">
+              <span
+                aria-hidden="true"
+                className="flex size-7 items-center justify-center rounded-lg bg-heading font-mono text-xs font-bold text-background"
+              >
+                {site.initials}
               </span>
+              <span className="text-base font-semibold tracking-tight text-heading">{site.wordmark}</span>
             </div>
-            <div className="text-xs font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400 font-semibold">
-              Full Stack Developer
-            </div>
-            <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-sm leading-relaxed">
+            <p className="font-mono text-xs font-medium uppercase tracking-wider text-muted">{site.role}</p>
+            <p className="max-w-sm text-sm leading-relaxed text-muted">
               Full Stack Developer specializing in Python, Django REST Framework, React, and PostgreSQL. Building practical, scalable, and maintainable software.
             </p>
           </div>
 
-          {/* Quick Navigation Links */}
-          <div className="md:col-span-4">
-            <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-3">
-              Navigation
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                >
-                  {link.name}
-                </a>
+          <nav aria-label="Footer" className="md:col-span-4">
+            <h2 className="mb-3 font-mono text-xs uppercase tracking-wider text-muted">Navigation</h2>
+            <ul className="grid grid-cols-2 gap-2 text-sm">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className="text-text transition-colors duration-200 hover:text-heading">
+                    {item.name}
+                  </a>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </nav>
 
-          {/* Direct Contact Links */}
           <div className="md:col-span-3">
-            <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 mb-3">
-              Direct Contact
-            </div>
-            <div className="space-y-2.5 text-xs font-medium text-zinc-600 dark:text-zinc-400">
-              <a
-                href="mailto:puthramannilshibin@gmail.com"
-                aria-label="Send email to Sibin P"
-                className="flex items-center gap-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors break-all"
-              >
-                <Mail className="w-3.5 h-3.5 shrink-0 text-indigo-600 dark:text-indigo-400" />
-                <span>puthramannilshibin@gmail.com</span>
-              </a>
-
-              <a
-                href="tel:+918590675644"
-                aria-label="Call Sibin P"
-                className="flex items-center gap-2 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-              >
-                <Phone className="w-3.5 h-3.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                <span>+91 8590675644</span>
-              </a>
-
-              <a
-                href="https://github.com/shibinputhramannil"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View Sibin P GitHub"
-                className="flex items-center gap-2 hover:text-zinc-950 dark:hover:text-white transition-colors"
-              >
-                <GithubIcon className="w-3.5 h-3.5 shrink-0" />
-                <span>GitHub Profile</span>
-                <ArrowUpRight className="w-3 h-3 text-zinc-400" />
-              </a>
-            </div>
+            <h2 className="mb-3 font-mono text-xs uppercase tracking-wider text-muted">Direct Contact</h2>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="flex items-center gap-2 break-all text-text transition-colors duration-200 hover:text-heading"
+                >
+                  <Mail className="size-3.5 shrink-0 text-muted" aria-hidden="true" />
+                  <span>{contact.email}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={telHref}
+                  className="flex items-center gap-2 text-text transition-colors duration-200 hover:text-heading"
+                >
+                  <Phone className="size-3.5 shrink-0 text-muted" aria-hidden="true" />
+                  <span>{contact.phoneDisplay}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={social.github.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-text transition-colors duration-200 hover:text-heading"
+                >
+                  <GithubIcon className="size-3.5 shrink-0" aria-hidden="true" />
+                  <span>GitHub Profile</span>
+                  <ArrowUpRight className="size-3 text-muted" aria-hidden="true" />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Copyright & Technical Tagline */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 dark:text-zinc-400">
-          <div>
-            &copy; {currentYear} SIBIN P. All rights reserved.
-          </div>
-          <div className="flex items-center gap-4 text-[11px] font-mono">
+        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-muted sm:flex-row">
+          <p>&copy; {currentYear} {site.wordmark}. All rights reserved.</p>
+          <p className="flex items-center gap-3 font-mono text-[11px]">
             <span>Next.js App Router</span>
-            <span>•</span>
+            <span aria-hidden="true">•</span>
             <span>TypeScript</span>
-            <span>•</span>
+            <span aria-hidden="true">•</span>
             <span>Tailwind CSS</span>
-          </div>
+          </p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

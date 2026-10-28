@@ -8,7 +8,6 @@ import { Certifications } from '@/components/certifications/Certifications';
 import { Education } from '@/components/education/Education';
 import { Contact } from '@/components/contact/Contact';
 import { Footer } from '@/components/footer/Footer';
-import { BackToTop } from '@/components/ui/BackToTop';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 
 export default function Home() {
@@ -17,7 +16,7 @@ export default function Home() {
       <ScrollProgress />
       <Navbar />
 
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
         <Hero />
         <About />
         <Skills />
@@ -29,7 +28,6 @@ export default function Home() {
       </main>
 
       <Footer />
-      <BackToTop />
     </div>
   );
 }

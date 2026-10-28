@@ -1,192 +1,236 @@
 'use client';
 
 import * as React from 'react';
-import Link from 'next/link';
 import { Menu, X, ArrowUpRight, FileText } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/icons';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { GradientButton } from '@/components/ui/GradientButton';
+import { Container } from '@/components/ui/Container';
+import { navItems, resume, site, social } from '@/lib/site';
 import { cn } from '@/lib/utils';
 
-const navItems = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Certifications', href: '#certifications' },
-  { name: 'Contact', href: '#contact' }
-];
+// The wordmark already links to #home, so the desktop bar omits it to fit
+// the 64rem container; the menu and footer keep the full list.
+const desktopNavItems = navItems.filter((item) => item.href !== '#home');
+const DESKTOP_QUERY = '(min-width: 1024px)';
 
 export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState('home');
+  const headerRef = React.useRef<HTMLElement>(null);
+  const menuButtonRef = React.useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
-    const handleScroll = () => {
+    const sections = navItems.map((item) => item.href.substring(1));
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
       setScrolled(window.scrollY > 20);
 
-      const sections = navItems.map((item) => item.href.substring(1));
       const scrollPosition = window.scrollY + 120;
-
       for (let i = sections.length - 1; i >= 0; i--) {
         const sectionEl = document.getElementById(sections[i]);
-        if (sectionEl) {
-          const top = sectionEl.offsetTop;
-          if (scrollPosition >= top) {
-            setActiveSection(sections[i]);
-            break;
-          }
+        if (sectionEl && scrollPosition >= sectionEl.offsetTop) {
+          setActiveSection(sections[i]);
+          break;
         }
       }
     };
 
+    const handleScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    update();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
+
+  // While the menu is open: Escape closes it and returns focus to the toggle,
+  // clicking outside the header closes it, and widening to desktop closes it.
+  React.useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    const handlePointerDown = (event: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    const desktop = window.matchMedia(DESKTOP_QUERY);
+    const handleDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setMenuOpen(false);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    desktop.addEventListener('change', handleDesktop);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('pointerdown', handlePointerDown);
+      desktop.removeEventListener('change', handleDesktop);
+    };
+  }, [menuOpen]);
+
+  const isActive = (href: string) => activeSection === href.substring(1);
 
   return (
     <header
+      ref={headerRef}
       className={cn(
-        'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
-        scrolled
-          ? 'bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-xs py-3'
-          : 'bg-transparent py-5'
+        'fixed inset-x-0 top-0 z-40 border-b transition-[background-color,border-color,padding] duration-300',
+        scrolled || menuOpen
+          ? 'border-line bg-background/85 py-3 backdrop-blur-md'
+          : 'border-transparent bg-transparent py-5'
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Brand Wordmark */}
-          <Link
-            href="#home"
-            className="group flex items-center gap-2 text-zinc-900 dark:text-white font-bold tracking-tight focus-visible:outline-hidden"
+      <a
+        href="#main-content"
+        className="sr-only rounded-lg bg-heading px-4 py-2 text-sm font-medium text-background focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50"
+      >
+        Skip to content
+      </a>
+
+      <Container className="flex items-center justify-between gap-4">
+        <a
+          href="#home"
+          aria-label={`${site.name}, back to top`}
+          className="group flex shrink-0 items-center gap-2.5 rounded-lg font-semibold tracking-tight text-heading"
+        >
+          <span
+            aria-hidden="true"
+            className="flex size-8 items-center justify-center rounded-lg bg-heading font-mono text-sm text-background transition-transform duration-200 motion-safe:group-hover:scale-105"
           >
-            <div className="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-mono text-sm font-semibold transition-transform duration-200 group-hover:scale-105 shadow-xs">
-              SP
-            </div>
-            <div className="flex flex-col">
-              <span className="text-base font-semibold leading-none tracking-tight">SIBIN P</span>
-              <span className="text-[10px] tracking-wider uppercase text-zinc-500 dark:text-zinc-400 font-mono mt-0.5">
-                Full Stack Developer
-              </span>
-            </div>
-          </Link>
+            {site.initials}
+          </span>
+          <span className="text-base leading-none">{site.wordmark}</span>
+        </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 bg-zinc-100/70 dark:bg-zinc-900/70 p-1.5 rounded-full border border-zinc-200/60 dark:border-zinc-800/60 backdrop-blur-xs">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
-              return (
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul className="flex items-center gap-1">
+            {desktopNavItems.map((item) => (
+              <li key={item.href}>
                 <a
-                  key={item.name}
                   href={item.href}
+                  aria-current={isActive(item.href) ? 'location' : undefined}
                   className={cn(
-                    'px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200',
-                    isActive
-                      ? 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-xs'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-zinc-800/50'
+                    'rounded-lg px-2.5 py-1.5 text-sm transition-colors duration-200',
+                    isActive(item.href)
+                      ? 'bg-surface-2 text-heading'
+                      : 'text-muted hover:bg-surface hover:text-heading'
                   )}
                 >
                   {item.name}
                 </a>
-              );
-            })}
-          </nav>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-          {/* Right Action Icons & CTA */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            <a
-              href="https://github.com/shibinputhramannil"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
-              aria-label="GitHub profile of Sibin P"
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
+        <div className="flex items-center gap-2">
+          <a
+            href={social.github.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${social.github.label} profile of ${site.name} (opens in a new tab)`}
+            className="hidden rounded-lg p-2 text-muted transition-colors duration-200 hover:bg-surface hover:text-heading sm:inline-flex"
+          >
+            <GithubIcon className="size-4" aria-hidden="true" />
+          </a>
 
-            <a
-              href="/resume/sibin-p-full-stack-developer-resume.pdf?v=20260923"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>Resume</span>
-            </a>
+          <a
+            href={resume.pdfHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-1.5 rounded-lg border border-line px-3 py-1.5 text-xs font-medium text-text transition-colors duration-200 hover:border-line-strong hover:text-heading sm:inline-flex"
+          >
+            <FileText className="size-3.5" aria-hidden="true" />
+            <span>Resume</span>
+            <span className="sr-only">(PDF, opens in a new tab)</span>
+          </a>
 
-            <ThemeToggle />
+          <ThemeToggle />
 
-            <a
-              href="#contact"
-              aria-label="Scroll to Contact section"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all shadow-xs"
-            >
-              <span>Contact</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
+          <GradientButton href="#contact" variant="primary" size="sm" className="hidden sm:inline-flex">
+            <span>Contact</span>
+            <ArrowUpRight className="size-3.5" aria-hidden="true" />
+          </GradientButton>
 
-          {/* Mobile Menu & Theme Button */}
-          <div className="flex sm:hidden items-center gap-2">
-            <ThemeToggle />
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900"
-              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="site-menu"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            className="inline-flex cursor-pointer rounded-lg border border-line p-2 text-text transition-colors duration-200 hover:bg-surface hover:text-heading lg:hidden"
+          >
+            {menuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+          </button>
         </div>
-      </div>
+      </Container>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden px-4 pt-3 pb-6 bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 shadow-xl transition-all">
-          <div className="flex flex-col space-y-2">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={cn(
-                    'px-4 py-2.5 rounded-lg text-sm font-medium transition-colors',
-                    isActive
-                      ? 'bg-zinc-100 dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400 font-semibold'
-                      : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900'
-                  )}
-                >
-                  {item.name}
-                </a>
-              );
-            })}
-            <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between gap-3">
+      {menuOpen && (
+        <div
+          id="site-menu"
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-background lg:hidden"
+        >
+          <Container className="py-4">
+            <nav aria-label="Primary">
+              <ul className="grid gap-1 sm:grid-cols-2">
+                {navItems.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      aria-current={isActive(item.href) ? 'location' : undefined}
+                      className={cn(
+                        'block rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-200',
+                        isActive(item.href)
+                          ? 'bg-surface-2 text-heading'
+                          : 'text-text hover:bg-surface hover:text-heading'
+                      )}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="mt-4 flex items-center gap-3 border-t border-line pt-4 sm:hidden">
               <a
-                href="https://github.com/shibinputhramannil"
+                href={social.github.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2 text-xs font-medium rounded-lg border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300"
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-line py-2 text-xs font-medium text-text"
               >
-                <GithubIcon className="w-4 h-4" />
-                <span>GitHub</span>
+                <GithubIcon className="size-4" aria-hidden="true" />
+                <span>{social.github.label}</span>
+                <span className="sr-only">(opens in a new tab)</span>
               </a>
               <a
-                href="/resume/sibin-p-full-stack-developer-resume.pdf?v=20260923"
+                href={resume.pdfHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2 text-xs font-medium rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-950"
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-heading py-2 text-xs font-medium text-background"
               >
-                <FileText className="w-4 h-4" />
+                <FileText className="size-4" aria-hidden="true" />
                 <span>Resume</span>
+                <span className="sr-only">(PDF, opens in a new tab)</span>
               </a>
             </div>
-          </div>
+          </Container>
         </div>
       )}
     </header>

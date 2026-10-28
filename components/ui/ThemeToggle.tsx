@@ -11,25 +11,24 @@ export function ThemeToggle() {
   const mounted = React.useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   if (!mounted) {
-    return (
-      <div className="w-9 h-9 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent flex items-center justify-center text-zinc-400" />
-    );
+    return <div aria-hidden="true" className="size-9 rounded-lg border border-line" />;
   }
 
   const isDark = resolvedTheme === 'dark';
+  const label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
 
   return (
     <button
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="relative p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-800/80 transition-all duration-200 shadow-xs focus-visible:ring-2 focus-visible:ring-indigo-500"
-      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-      title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      className="inline-flex size-9 cursor-pointer items-center justify-center rounded-lg border border-line text-text transition-colors duration-200 hover:border-line-strong hover:bg-surface hover:text-heading"
+      aria-label={label}
+      title={label}
     >
       {isDark ? (
-        <Sun className="w-4 h-4 text-amber-400 transition-transform hover:rotate-45" />
+        <Sun className="size-4 text-amber-400" aria-hidden="true" />
       ) : (
-        <Moon className="w-4 h-4 text-zinc-700 transition-transform hover:-rotate-12" />
+        <Moon className="size-4" aria-hidden="true" />
       )}
     </button>
   );
