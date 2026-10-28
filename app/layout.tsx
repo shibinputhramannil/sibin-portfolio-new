@@ -14,14 +14,13 @@ const geistMono = Geist_Mono({
   subsets: ['latin']
 });
 
-// Editorial accent face. Not preloaded until a section above the fold uses it.
+// Editorial accent face, used in the hero greeting and headline (above the fold).
 const instrumentSerif = Instrument_Serif({
   variable: '--font-instrument-serif',
   weight: '400',
   style: 'italic',
   subsets: ['latin'],
   display: 'swap',
-  preload: false,
   fallback: ['Georgia', 'Times New Roman', 'serif']
 });
 

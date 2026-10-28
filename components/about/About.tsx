@@ -1,102 +1,101 @@
 import * as React from 'react';
-import { Database, Server, Cpu, ShieldCheck, GitBranch } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
+import { Database, Server, Cpu, ShieldCheck, GitBranch, ArrowUpRight } from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from '@/components/ui/icons';
+import { Section } from '@/components/ui/Section';
+import { Accent } from '@/components/ui/SectionHeading';
+import { social } from '@/lib/site';
+
+const focusAreas = [
+  {
+    title: 'Full Stack Development',
+    description: 'Building end-to-end web applications connecting modular client interfaces with robust backend architectures.',
+    icon: Server
+  },
+  {
+    title: 'Python & Django REST Framework',
+    description: 'Engineering clean API endpoints, serializers, viewsets, and domain business logic with Python.',
+    icon: GitBranch
+  },
+  {
+    title: 'Database-Driven Systems',
+    description: 'Structuring normalized relational schemas, foreign key relationships, and query routines in PostgreSQL.',
+    icon: Database
+  },
+  {
+    title: 'ERP & CRM Platforms',
+    description: 'Architecting comprehensive enterprise systems across ERP operations (inventory, sales, finance) and CRM lead management.',
+    icon: ShieldCheck
+  },
+  {
+    title: 'Applied Machine Learning & AI',
+    description: 'Developing mathematical feature extraction pipelines (PCA) and artificial neural network (ANN) classifiers.',
+    icon: Cpu
+  }
+];
+
+const socialLinks = [
+  { ...social.github, Icon: GithubIcon },
+  { ...social.linkedin, Icon: LinkedinIcon }
+];
 
 export function About() {
-  const focusAreas = [
-    {
-      title: 'Full Stack Development',
-      description: 'Building end-to-end web applications connecting modular client interfaces with robust backend architectures.',
-      icon: Server
-    },
-    {
-      title: 'Python & Django REST Framework',
-      description: 'Engineering clean API endpoints, serializers, viewsets, and domain business logic with Python.',
-      icon: GitBranch
-    },
-    {
-      title: 'Database-Driven Systems',
-      description: 'Structuring normalized relational schemas, foreign key relationships, and query routines in PostgreSQL.',
-      icon: Database
-    },
-    {
-      title: 'ERP & CRM Platforms',
-      description: 'Architecting comprehensive enterprise systems across ERP operations (inventory, sales, finance) and CRM lead management.',
-      icon: ShieldCheck
-    },
-    {
-      title: 'Applied Machine Learning & AI',
-      description: 'Developing mathematical feature extraction pipelines (PCA) and artificial neural network (ANN) classifiers.',
-      icon: Cpu
-    }
-  ];
-
   return (
-    <section id="about" className="py-20 bg-zinc-50/70 dark:bg-zinc-900/40 border-y border-zinc-200/80 dark:border-zinc-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl space-y-4">
-          <Badge variant="accent">About Me</Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
-            Practical engineering grounded in backend fundamentals.
-          </h2>
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            I am a Full Stack Developer with a solid foundation in backend development, relational databases, applied artificial intelligence, and client-side web technologies. My work centers on creating practical, maintainable applications that solve concrete business operational requirements.
-          </p>
-        </div>
-
-        {/* Two-column detailed summary */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-6 space-y-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            <p>
-              My hands-on experience includes developing live CRM systems at Upcode Software Labs, where I worked directly with business specifications, implemented Django REST Framework endpoints, managed PostgreSQL database schemas, and interfaced with ReactJS.
-            </p>
-            <p>
-              I have engineered two core enterprise systems: a production-ready enterprise ERP platform (<span className="text-zinc-900 dark:text-zinc-200 font-semibold">IcorpERP</span>) unifying multi-tenant inventory, sales, purchasing, double-entry finance, and AI assistance, alongside a dedicated <span className="text-zinc-900 dark:text-zinc-200 font-semibold">Enterprise CRM Platform</span> with automated pipelines and Twilio voice integrations.
-            </p>
-            <p>
-              In parallel, during my Artificial Intelligence internship at Internship Studio, I engineered machine learning pipelines from fundamental principles—implementing PCA surrogate covariance algorithms for facial feature extraction and training multi-layer neural networks via backpropagation.
-            </p>
-
-            <div className="pt-2 flex flex-wrap gap-2">
-              <Badge variant="neutral">Python</Badge>
-              <Badge variant="neutral">Django REST</Badge>
-              <Badge variant="neutral">PostgreSQL</Badge>
-              <Badge variant="neutral">React</Badge>
-              <Badge variant="neutral">Redux Toolkit</Badge>
-              <Badge variant="neutral">PCA / ANN</Badge>
-              <Badge variant="neutral">Postman</Badge>
-              <Badge variant="neutral">Git</Badge>
-            </div>
-          </div>
-
-          {/* Right column: Core technical competencies grid */}
-          <div className="lg:col-span-6 space-y-3">
-            {focusAreas.map((area) => {
-              const Icon = area.icon;
-              return (
-                <div
-                  key={area.title}
-                  className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xs hover:border-indigo-300 dark:hover:border-indigo-800/80 transition-all duration-200"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">
-                        {area.title}
-                      </h3>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 leading-normal">
-                        {area.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+    <Section
+      id="about"
+      layout="split"
+      eyebrow="About Me"
+      title={
+        <>
+          Practical engineering grounded in <Accent>backend fundamentals.</Accent>
+        </>
+      }
+    >
+      <div className="space-y-5 text-base leading-relaxed text-text md:text-lg">
+        <p className="text-heading">
+          I am a Full Stack Developer with a solid foundation in backend development, relational databases, applied artificial intelligence, and client-side web technologies. My work centers on creating practical, maintainable applications that solve concrete business operational requirements.
+        </p>
+        <p>
+          My hands-on experience includes developing live CRM systems at Upcode Software Labs, where I worked directly with business specifications, implemented Django REST Framework endpoints, managed PostgreSQL database schemas, and interfaced with ReactJS.
+        </p>
+        <p>
+          I have engineered two core enterprise systems: a production-ready enterprise ERP platform (<span className="font-semibold text-heading">IcorpERP</span>) unifying multi-tenant inventory, sales, purchasing, double-entry finance, and AI assistance, alongside a dedicated <span className="font-semibold text-heading">Enterprise CRM Platform</span> with automated pipelines and Twilio voice integrations.
+        </p>
+        <p>
+          In parallel, during my Artificial Intelligence internship at Internship Studio, I engineered machine learning pipelines from fundamental principles—implementing PCA surrogate covariance algorithms for facial feature extraction and training multi-layer neural networks via backpropagation.
+        </p>
       </div>
-    </section>
+
+      <ul className="mt-8 flex flex-wrap gap-3">
+        {socialLinks.map(({ label, handle, href, Icon }) => (
+          <li key={href}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-sm text-text transition-colors duration-200 hover:border-line-strong hover:text-heading"
+            >
+              <Icon className="size-4" aria-hidden="true" />
+              <span>{label}</span>
+              <span className="hidden font-mono text-xs text-muted sm:inline">{handle}</span>
+              <ArrowUpRight className="size-3.5 text-muted transition-transform duration-200 motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <h3 className="mt-12 font-mono text-xs font-medium uppercase tracking-wider text-muted">Focus areas</h3>
+      <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+        {focusAreas.map(({ title, description, icon: Icon }) => (
+          <li key={title} className="flex gap-3">
+            <Icon className="mt-0.5 size-4 shrink-0 text-accent-from" aria-hidden="true" />
+            <div>
+              <p className="text-sm font-semibold text-heading">{title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-muted">{description}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 }

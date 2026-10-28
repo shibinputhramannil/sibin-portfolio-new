@@ -1,88 +1,74 @@
 import * as React from 'react';
+import { MapPin } from 'lucide-react';
 import { experiences } from '@/data/experience';
-import { Badge } from '@/components/ui/Badge';
-import { Calendar, MapPin, CheckCircle2 } from 'lucide-react';
+import { Section } from '@/components/ui/Section';
+import { Accent } from '@/components/ui/SectionHeading';
+import { Chip } from '@/components/ui/Chip';
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl space-y-3">
-          <Badge variant="accent">Experience</Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
-            Professional engineering journey.
-          </h2>
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400">
-            Documented internships demonstrating real software contributions, client requirements, and machine learning development.
-          </p>
-        </div>
-
-        <div className="mt-12 relative border-l border-zinc-200 dark:border-zinc-800 ml-4 sm:ml-6 space-y-12">
-          {experiences.map((exp) => (
-            <div key={exp.id} className="relative pl-6 sm:pl-8 group">
-              {/* Timeline marker node */}
-              <div className="absolute -left-2.75 top-1.5 w-5 h-5 rounded-full border-4 border-white dark:border-zinc-950 bg-indigo-600 dark:bg-indigo-500 shadow-xs group-hover:scale-110 transition-transform" />
-
-              <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 sm:p-8 shadow-xs hover:border-zinc-300 dark:hover:border-zinc-700 transition-all">
-                {/* Header: Role, Company, Period */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-zinc-100 dark:border-zinc-800">
-                  <div>
-                    <h3 className="text-xl font-bold text-zinc-950 dark:text-white">
-                      {exp.role}
-                    </h3>
-                    <div className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 mt-0.5">
-                      {exp.company}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400 font-medium">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-zinc-400" />
-                      <span>{exp.period}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-zinc-400" />
-                      <span>{exp.location}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="mt-4 text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                  {exp.description}
+    <Section
+      id="experience"
+      eyebrow="Experience"
+      title={
+        <>
+          Professional engineering <Accent>journey.</Accent>
+        </>
+      }
+      description="Documented internships demonstrating real software contributions, client requirements, and machine learning development."
+    >
+      <ol className="space-y-12 md:space-y-0">
+        {experiences.map((exp, index) => {
+          const isLast = index === experiences.length - 1;
+          return (
+            <li key={exp.id} className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_2fr] md:gap-10">
+              {/* Meta column: dates, organisation, location */}
+              <div className="md:pb-14 md:text-right">
+                <p className="font-mono text-xs text-muted">
+                  <time dateTime={exp.startDate}>{exp.period.split('–')[0].trim()}</time>
+                  {' – '}
+                  <time dateTime={exp.endDate}>{exp.period.split('–')[1]?.trim()}</time>
                 </p>
-
-                {/* Key Deliverables */}
-                <div className="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-800/80">
-                  <div className="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2.5">
-                    Documented Contributions:
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {exp.keyDeliverables.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-300"
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                        <span className="leading-tight">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Technologies */}
-                <div className="mt-5 pt-3 flex flex-wrap gap-1.5">
-                  {exp.technologies.map((tech) => (
-                    <Badge key={tech} variant="neutral">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
+                <p className="mt-2 text-base font-semibold text-heading">{exp.company}</p>
+                <p className="mt-1 inline-flex items-center gap-1.5 text-sm text-muted">
+                  <MapPin className="size-3.5" aria-hidden="true" />
+                  {exp.location}
+                </p>
+                {exp.status && <p className="mt-1 text-sm text-muted">{exp.status}</p>}
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+
+              {/* Timeline column */}
+              <div className="relative pl-8 md:pb-14">
+                <span aria-hidden="true" className="absolute left-0 top-1.5 size-3 rounded-full bg-accent-gradient ring-4 ring-background" />
+                {!isLast && <span aria-hidden="true" className="absolute bottom-0 left-[5px] top-6 w-0.5 bg-line" />}
+
+                <h3 className="text-xl font-semibold tracking-tight text-heading">{exp.role}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-text md:text-base">{exp.description}</p>
+
+                <h4 className="mt-6 font-mono text-xs font-medium uppercase tracking-wider text-muted">
+                  Documented Contributions
+                </h4>
+                <ul className="mt-3 space-y-2 text-sm text-text">
+                  {exp.keyDeliverables.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-accent-from" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <ul className="mt-5 flex flex-wrap gap-2" aria-label={`Technologies used at ${exp.company}`}>
+                  {exp.technologies.map((tech) => (
+                    <li key={tech}>
+                      <Chip size="sm">{tech}</Chip>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </Section>
   );
 }

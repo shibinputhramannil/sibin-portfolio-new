@@ -12,9 +12,14 @@ export interface Project {
   documentedModules?: string[];
   architectureHighlights?: string[];
   githubUrl?: string;
+  /** 'profile' when githubUrl points to the GitHub profile rather than a repository. */
+  githubLinkType?: 'repository' | 'profile';
   liveUrl?: string;
   featured: boolean;
+  /** Real screenshot path; when absent an illustrative placeholder is shown. */
   image?: string;
+  specs?: { label: string; value: string }[];
+  specsNote?: string;
 }
 
 export interface SkillItem {

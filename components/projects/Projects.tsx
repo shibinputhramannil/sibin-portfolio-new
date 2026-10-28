@@ -3,201 +3,123 @@
 import * as React from 'react';
 import { projects } from '@/data/projects';
 import { Project, ProjectCategory } from '@/types';
-import { ProjectCard } from './ProjectCard';
-import { ProjectModal } from './ProjectModal';
-import { Badge } from '@/components/ui/Badge';
-import { ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
-import { GithubIcon } from '@/components/ui/icons';
+import { Section } from '@/components/ui/Section';
+import { Accent } from '@/components/ui/SectionHeading';
+import { Tabs, tabPanelProps, useRovingTabs } from '@/components/ui/Tabs';
 import { cn } from '@/lib/utils';
+import { ProjectThumbnail } from './ProjectThumbnail';
+import { ProjectDetail } from './ProjectDetail';
+import { ProjectModal } from './ProjectModal';
+
+const FILTER_ID = 'project-filter';
+const PICKER_ID = 'project';
+
+const categories: ProjectCategory[] = ['All', 'Full Stack', 'Backend', 'AI / ML'];
+const filterItems = categories.map((category) => ({ value: category, label: category }));
+
+// The featured project leads the list; numbering follows this order.
+const orderedProjects = [
+  ...projects.filter((p) => p.id === 'icorp-erp'),
+  ...projects.filter((p) => p.id !== 'icorp-erp')
+];
 
 export function Projects() {
-  const [selectedCategory, setSelectedCategory] = React.useState<ProjectCategory>('All');
-  const [activeModalProject, setActiveModalProject] = React.useState<Project | null>(null);
+  const [category, setCategory] = React.useState<ProjectCategory>('All');
+  const [selectedId, setSelectedId] = React.useState(orderedProjects[0].id);
+  const [modalProject, setModalProject] = React.useState<Project | null>(null);
+  const modalTriggerRef = React.useRef<HTMLElement | null>(null);
 
-  const categories: ProjectCategory[] = ['All', 'Full Stack', 'Backend', 'AI / ML'];
+  const openDetails = (project: Project, trigger: HTMLElement) => {
+    modalTriggerRef.current = trigger;
+    setModalProject(project);
+  };
 
-  const featuredProject = projects.find((p) => p.id === 'icorp-erp') || projects[0];
+  const visible = orderedProjects.filter((p) => category === 'All' || p.category === category);
+  const selected = visible.find((p) => p.id === selectedId) ?? visible[0];
 
-  const gridProjects = projects.filter((p) => {
-    if (selectedCategory === 'All') return p.id !== featuredProject.id;
-    return p.category === selectedCategory && p.id !== featuredProject.id;
-  });
+  const handleCategory = (next: ProjectCategory) => {
+    setCategory(next);
+    const nextVisible = orderedProjects.filter((p) => next === 'All' || p.category === next);
+    if (!nextVisible.some((p) => p.id === selectedId)) setSelectedId(nextVisible[0].id);
+  };
+
+  const getTabProps = useRovingTabs(
+    PICKER_ID,
+    visible.map((p) => p.id),
+    selected.id,
+    setSelectedId
+  );
 
   return (
-    <section id="projects" className="py-20 bg-zinc-50/60 dark:bg-zinc-950/40 border-t border-zinc-200/80 dark:border-zinc-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl space-y-3">
-          <Badge variant="accent">Featured Work</Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
-            Real projects & production architectures.
-          </h2>
-          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400">
-            Engineered systems demonstrating database modeling, REST API design, enterprise ERP/CRM logic, and applied machine learning.
-          </p>
-        </div>
+    <Section
+      id="projects"
+      eyebrow="Featured Work"
+      title={
+        <>
+          Real projects &amp; <Accent>production architectures.</Accent>
+        </>
+      }
+      description="Engineered systems demonstrating database modeling, REST API design, enterprise ERP/CRM logic, and applied machine learning."
+    >
+      <Tabs
+        idBase={FILTER_ID}
+        label="Filter projects by category"
+        items={filterItems}
+        value={category}
+        onValueChange={handleCategory}
+      />
 
-        {/* PRIMARY FEATURED PROJECT: ICORP ERP */}
-        <div className="mt-12 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-lg overflow-hidden transition-all hover:border-indigo-400/80 dark:hover:border-indigo-600/80">
-          <div className="p-6 sm:p-8 lg:p-10">
-            <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-zinc-100 dark:border-zinc-800">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <Badge variant="accent">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 mr-1" />
-                  <span>PRIMARY FEATURED PROJECT</span>
-                </Badge>
-                <Badge variant="success">
-                  <span>Status: COMPLETED</span>
-                </Badge>
-                <Badge variant="neutral">Enterprise ERP Platform</Badge>
-              </div>
-
-              <div className="flex items-center gap-3">
-                {featuredProject.githubUrl && (
-                  <a
-                    href={featuredProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 text-xs font-semibold text-zinc-800 dark:text-zinc-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors"
-                  >
-                    <GithubIcon className="w-3.5 h-3.5" />
-                    <span>View Repository</span>
-                  </a>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setActiveModalProject(featuredProject)}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 text-xs font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all cursor-pointer shadow-xs"
-                >
-                  <span>Detailed Architecture</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              <div className="lg:col-span-7 space-y-4">
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
-                  {featuredProject.title}
-                </h3>
-                <p className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
-                  {featuredProject.tagline}
-                </p>
-                <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                  {featuredProject.description}
-                </p>
-
-                {/* Documented Modules */}
-                <div className="pt-2">
-                  <div className="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
-                    Documented Functional Modules:
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {featuredProject.documentedModules?.map((mod, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-2 p-2 rounded-lg bg-zinc-50 dark:bg-zinc-800/40 text-xs text-zinc-700 dark:text-zinc-300"
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 shrink-0" />
-                        <span className="truncate">{mod}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tech Badges */}
-                <div className="pt-4 flex flex-wrap gap-1.5">
-                  {featuredProject.technologies.map((tech) => (
-                    <Badge key={tech} variant="neutral">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Column: Architectural Highlights & Specs */}
-              <div className="lg:col-span-5 p-5 sm:p-6 rounded-2xl bg-zinc-50/90 dark:bg-zinc-800/50 border border-zinc-200/80 dark:border-zinc-800 space-y-4 font-mono text-xs">
-                <div className="flex items-center gap-2 text-zinc-800 dark:text-zinc-200 font-semibold pb-3 border-b border-zinc-200/60 dark:border-zinc-700/60 font-sans text-sm">
-                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                  <span>Technical Specifications</span>
-                </div>
-
-                <div className="space-y-3 text-zinc-600 dark:text-zinc-300">
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-zinc-400 dark:text-zinc-500">Architecture:</span>
-                    <span className="text-right font-medium">Django REST + PostgreSQL</span>
-                  </div>
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-zinc-400 dark:text-zinc-500">Multi-Tenancy:</span>
-                    <span className="text-right font-medium">Tenant Data Isolation</span>
-                  </div>
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-zinc-400 dark:text-zinc-500">Authentication:</span>
-                    <span className="text-right font-medium">Token / JWT Based</span>
-                  </div>
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-zinc-400 dark:text-zinc-500">API Testing:</span>
-                    <span className="text-right font-medium">Postman Automated Suites</span>
-                  </div>
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-zinc-400 dark:text-zinc-500">AI Capabilities:</span>
-                    <span className="text-right font-medium text-emerald-600 dark:text-emerald-400">
-                      Integrated AI Assistant
-                    </span>
-                  </div>
-                </div>
-
-                <div className="pt-2 text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal border-t border-zinc-200/60 dark:border-zinc-700/60">
-                  Production-ready enterprise platform (v1.1.0) with complete modules for Inventory, Sales, Purchasing, Accounting, and Workspace Collaboration.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* SECTION 2: ADDITIONAL VERIFIED PROJECTS */}
-        <div className="mt-16">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6">
-            <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 dark:text-white">
-              Additional Verified Projects
-            </h3>
-
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-1.5 p-1 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => setSelectedCategory(cat)}
-                  className={cn(
-                    'px-3 py-1.5 text-xs font-medium rounded-lg transition-all',
-                    selectedCategory === cat
-                      ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-xs'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
-                  )}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-            {gridProjects.map((project) => (
-              <ProjectCard
+      <div {...tabPanelProps(FILTER_ID, category, { focusable: false })} className="mt-6">
+        <div role="tablist" aria-label="Projects" className="grid grid-cols-4 gap-2 sm:grid-cols-7">
+          {visible.map((project, i) => {
+            const number = orderedProjects.indexOf(project);
+            const isSelected = project.id === selected.id;
+            return (
+              <button
                 key={project.id}
-                project={project}
-                onSelect={(p) => setActiveModalProject(p)}
-              />
-            ))}
-          </div>
+                {...getTabProps(i)}
+                className={cn(
+                  'group cursor-pointer rounded-lg p-0.5 text-left transition-transform duration-200 motion-safe:hover:scale-[1.03]',
+                  isSelected ? 'bg-accent-gradient' : 'bg-line hover:bg-line-strong'
+                )}
+              >
+                <span className="relative block overflow-hidden rounded-[calc(var(--radius-lg)-2px)]">
+                  <ProjectThumbnail
+                    project={project}
+                    index={number}
+                    size="sm"
+                    className={cn('h-12 md:h-20', !isSelected && 'opacity-60 transition-opacity group-hover:opacity-100')}
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-1 left-1 rounded bg-background/85 px-1.5 py-0.5 font-mono text-[11px] text-heading"
+                  >
+                    {String(number + 1).padStart(2, '0')}
+                  </span>
+                </span>
+                <span className="sr-only">
+                  {String(number + 1).padStart(2, '0')}. {project.title}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div {...tabPanelProps(PICKER_ID, selected.id)} className="mt-8 rounded-lg">
+          <ProjectDetail
+            key={selected.id}
+            project={selected}
+            index={orderedProjects.indexOf(selected)}
+            onOpenDetails={openDetails}
+          />
         </div>
       </div>
 
-      {/* Project Modal */}
       <ProjectModal
-        project={activeModalProject}
-        onClose={() => setActiveModalProject(null)}
+        project={modalProject}
+        onClose={() => setModalProject(null)}
+        returnFocusRef={modalTriggerRef}
       />
-    </section>
+    </Section>
   );
 }

@@ -117,14 +117,14 @@ export function Navbar() {
         </a>
 
         <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0.5">
             {desktopNavItems.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
                   aria-current={isActive(item.href) ? 'location' : undefined}
                   className={cn(
-                    'rounded-lg px-2.5 py-1.5 text-sm transition-colors duration-200',
+                    'rounded-lg px-2 py-1.5 text-sm transition-colors duration-200',
                     isActive(item.href)
                       ? 'bg-surface-2 text-heading'
                       : 'text-muted hover:bg-surface hover:text-heading'

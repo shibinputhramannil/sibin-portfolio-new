@@ -7,7 +7,7 @@ export const certifications: CertificationItem[] = [
     issuer: 'Upcode Software Labs',
     period: '12 January 2026 – 18 September 2026',
     issueDate: 'September 2026',
-    status: 'Verified Credential',
+    status: 'Completed',
     description:
       'Rigorous multi-month full stack software engineering curriculum covering end-to-end web architecture, relational database management, and professional developer tooling.',
     topics: [
@@ -28,7 +28,7 @@ export const certifications: CertificationItem[] = [
     issuer: 'Upcode Software Labs Pvt. Ltd.',
     period: '24 July 2026 – 18 September 2026',
     issueDate: 'September 2026',
-    status: 'Verified Credential',
+    status: 'Completed',
     description:
       'Hands-on industry internship focused on enterprise CRM architecture, relational business entity modeling, and RESTful web service implementation.',
     topics: [
@@ -47,7 +47,7 @@ export const certifications: CertificationItem[] = [
     issuer: 'Internship Studio, Pune',
     period: '6 April 2026 – 9 August 2026',
     issueDate: 'August 2026',
-    status: 'Verified Credential',
+    status: 'Completed',
     description:
       'Intensive internship focused on machine learning fundamentals, dimensionality reduction techniques, and computer vision neural network modeling.',
     topics: [

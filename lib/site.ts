@@ -37,6 +37,12 @@ export const social = {
     label: 'GitHub',
     handle: 'github.com/shibinputhramannil',
     href: 'https://github.com/shibinputhramannil'
+  },
+  // Same profile URL as the published resume (public/resume/sibin-p-resume.html).
+  linkedin: {
+    label: 'LinkedIn',
+    handle: 'linkedin.com/in/shibi-ii-a23366437',
+    href: 'https://www.linkedin.com/in/shibi-ii-a23366437/'
   }
 } as const;
 
@@ -61,5 +67,6 @@ export const navItems: readonly NavItem[] = [
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience' },
   { name: 'Certifications', href: '#certifications' },
+  { name: 'Education', href: '#education' },
   { name: 'Contact', href: '#contact' }
 ];

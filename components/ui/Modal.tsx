@@ -40,6 +40,11 @@ export interface ModalProps {
   header?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
+  /**
+   * Element to refocus on close. Pass the trigger explicitly: Safari does not
+   * focus buttons on mouse click, so document.activeElement is unreliable.
+   */
+  returnFocusRef?: React.RefObject<HTMLElement | null>;
 }
 
 /**
@@ -48,7 +53,7 @@ export interface ModalProps {
  * Escape; this component adds scroll locking, backdrop-click dismissal and
  * focus restoration to the element that opened it.
  */
-export function Modal({ open, onClose, title, description, header, children, className }: ModalProps) {
+export function Modal({ open, onClose, title, description, header, children, className, returnFocusRef }: ModalProps) {
   const dialogRef = React.useRef<HTMLDialogElement>(null);
   const titleId = React.useId();
   const descriptionId = React.useId();
@@ -61,7 +66,8 @@ export function Modal({ open, onClose, title, description, header, children, cla
     const dialog = dialogRef.current;
     if (!dialog || !open) return;
 
-    const trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const trigger =
+      returnFocusRef?.current ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
     const onNativeClose = () => handleClose();
 
     dialog.addEventListener('close', onNativeClose);
@@ -74,7 +80,7 @@ export function Modal({ open, onClose, title, description, header, children, cla
       unlockScroll();
       if (trigger && trigger.isConnected) trigger.focus();
     };
-  }, [open]);
+  }, [open, returnFocusRef]);
 
   return (
     <dialog

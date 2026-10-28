@@ -40,7 +40,16 @@ export const projects: Project[] = [
       'Docker multi-container orchestration for backend API, PostgreSQL, and frontend'
     ],
     githubUrl: 'https://github.com/shibinputhramannil/IcorpERP',
-    featured: true
+    featured: true,
+    specs: [
+      { label: 'Architecture', value: 'Django REST + PostgreSQL' },
+      { label: 'Multi-Tenancy', value: 'Tenant Data Isolation' },
+      { label: 'Authentication', value: 'Token / JWT Based' },
+      { label: 'API Testing', value: 'Postman Automated Suites' },
+      { label: 'AI Capabilities', value: 'Integrated AI Assistant' }
+    ],
+    specsNote:
+      'Production-ready enterprise platform (v1.1.0) with complete modules for Inventory, Sales, Purchasing, Accounting, and Workspace Collaboration.'
   },
   {
     id: 'enterprise-crm',
@@ -80,7 +89,10 @@ export const projects: Project[] = [
       'Role-based permission guards (Admin, Sales Reps, Managers) with JWT token refresh',
       'Containerized multi-service deployment with Docker Compose and GitHub Actions testing'
     ],
+    // No public CRM repository exists on the profile (checked against the GitHub API),
+    // so this links to the profile and is labelled as such.
     githubUrl: 'https://github.com/shibinputhramannil',
+    githubLinkType: 'profile',
     featured: true
   },
   {
