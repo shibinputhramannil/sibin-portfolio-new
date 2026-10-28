@@ -48,7 +48,8 @@ export function PwaManager() {
           });
       };
 
-      if ('serviceWorker' in navigator) {
+      // Production only: in `next dev` the cache-first build-asset rule would serve stale code.
+      if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
         if (document.readyState === 'complete') {
           registerServiceWorker();
         } else {

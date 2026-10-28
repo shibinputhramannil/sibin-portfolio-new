@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { FloatingControls } from '@/components/layout/FloatingControls';
+import { site } from '@/lib/site';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -58,10 +59,10 @@ export const metadata: Metadata = {
       'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
     images: [
       {
-        url: '/images/sibin.png',
-        width: 1200,
-        height: 1200,
-        alt: 'Sibin P - Full Stack Developer'
+        url: site.ogImage.src,
+        width: site.ogImage.width,
+        height: site.ogImage.height,
+        alt: site.ogImage.alt
       }
     ]
   },
@@ -70,7 +71,7 @@ export const metadata: Metadata = {
     title: 'Sibin P | Full Stack Developer',
     description:
       'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
-    images: ['/images/sibin.png']
+    images: [{ url: site.ogImage.src, alt: site.ogImage.alt }]
   },
   icons: {
     icon: [
