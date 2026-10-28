@@ -10,6 +10,7 @@ import { Education } from '@/components/education/Education';
 import { Contact } from '@/components/contact/Contact';
 import { Footer } from '@/components/footer/Footer';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { RevealController } from '@/components/motion/RevealController';
 import { homeJsonLd, serializeJsonLd } from '@/lib/structured-data';
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(homeJsonLd()) }}
       />
       <ScrollProgress />
+      <RevealController />
       <Navbar />
 
       <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">

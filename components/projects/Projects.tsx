@@ -7,6 +7,7 @@ import { Section } from '@/components/ui/Section';
 import { Accent } from '@/components/ui/SectionHeading';
 import { Tabs, tabPanelProps, useRovingTabs } from '@/components/ui/Tabs';
 import { cn } from '@/lib/utils';
+import { useSlidingIndicator } from '@/components/motion/useSlidingIndicator';
 import { ProjectThumbnail } from './ProjectThumbnail';
 import { ProjectDetail } from './ProjectDetail';
 import { ProjectModal } from './ProjectModal';
@@ -43,6 +44,10 @@ export function Projects() {
     if (!nextVisible.some((p) => p.id === selectedId)) setSelectedId(nextVisible[0].id);
   };
 
+  const pickerRef = React.useRef<HTMLDivElement>(null);
+  const pickerIndicatorRef = React.useRef<HTMLSpanElement>(null);
+  useSlidingIndicator(pickerRef, pickerIndicatorRef, selected.id + category, 'frame');
+
   const getTabProps = useRovingTabs(
     PICKER_ID,
     visible.map((p) => p.id),
@@ -70,7 +75,13 @@ export function Projects() {
       />
 
       <div {...tabPanelProps(FILTER_ID, category, { focusable: false })} className="mt-6">
-        <div role="tablist" aria-label="Projects" className="grid grid-cols-4 gap-2 sm:grid-cols-7">
+        <div ref={pickerRef} role="tablist" aria-label="Projects" className="relative grid grid-cols-4 gap-2 sm:grid-cols-7">
+          {/* Gradient frame that slides to the selected project (replaces the static frame once measured). */}
+          <span
+            ref={pickerIndicatorRef}
+            aria-hidden="true"
+            className="slide-indicator pointer-events-none absolute left-0 top-0 rounded-lg bg-accent-gradient shadow-[0_8px_24px_-12px_var(--accent-from)]"
+          />
           {visible.map((project, i) => {
             const number = orderedProjects.indexOf(project);
             const isSelected = project.id === selected.id;
@@ -79,8 +90,9 @@ export function Projects() {
                 key={project.id}
                 {...getTabProps(i)}
                 className={cn(
-                  'group cursor-pointer rounded-lg p-0.5 text-left transition-transform duration-200 motion-safe:hover:scale-[1.03]',
-                  isSelected ? 'bg-accent-gradient' : 'bg-line hover:bg-line-strong'
+                  'picker-tab group relative cursor-pointer rounded-lg p-0.5 text-left transition-[transform,background-color] duration-(--duration-base) ease-soft',
+                  // Unselected thumbnails lift on hover; the selected one stays aligned with the sliding frame.
+                  isSelected ? 'bg-accent-gradient' : 'bg-line hover:bg-line-strong motion-safe:hover:-translate-y-0.5'
                 )}
               >
                 <span className="relative block overflow-hidden rounded-[calc(var(--radius-lg)-2px)]">
@@ -88,7 +100,7 @@ export function Projects() {
                     project={project}
                     index={number}
                     size="sm"
-                    className={cn('h-12 md:h-20', !isSelected && 'opacity-60 transition-opacity group-hover:opacity-100')}
+                    className={cn('h-12 md:h-20', !isSelected && 'opacity-60 transition-opacity duration-(--duration-base) group-hover:opacity-100')}
                   />
                   <span
                     aria-hidden="true"

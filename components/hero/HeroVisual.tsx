@@ -10,14 +10,20 @@ export function HeroVisual() {
 
   return (
     <div className="relative w-56 justify-self-start sm:w-64 lg:justify-self-end">
-      <OrbitDecor className="absolute -right-12 -top-12 size-48 text-muted sm:size-56" />
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl shadow-black/20">
+      {/* Entrance fade on the wrapper; slow rotation (ambient, paused off-screen) on the SVG. */}
+      <div className="hero-in absolute -right-12 -top-12" style={{ '--i': 5 } as React.CSSProperties}>
+        <OrbitDecor className="ambient-orbit size-48 text-muted sm:size-56" />
+      </div>
+      <div className="hero-portrait relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl shadow-black/20">
         {!imageError ? (
+          // Likely LCP on desktop. Next 16 deprecates `priority`; the docs
+          // recommend loading="eager" with fetchPriority="high" instead.
           <Image
             src={site.portrait.src}
             alt={site.portrait.alt}
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             sizes="(min-width: 640px) 256px, 224px"
             className="object-cover object-top"
             onError={() => setImageError(true)}

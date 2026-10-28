@@ -9,6 +9,7 @@ export function Experience() {
   return (
     <Section
       id="experience"
+      revealContent={false}
       eyebrow="Experience"
       title={
         <>
@@ -21,7 +22,12 @@ export function Experience() {
         {experiences.map((exp, index) => {
           const isLast = index === experiences.length - 1;
           return (
-            <li key={exp.id} className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_2fr] md:gap-10">
+            <li
+              key={exp.id}
+              data-reveal=""
+              style={{ '--i': index } as React.CSSProperties}
+              className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_2fr] md:gap-10"
+            >
               {/* Meta column: dates, organisation, location */}
               <div className="md:pb-14 md:text-right">
                 <p className="font-mono text-xs text-muted">
@@ -39,8 +45,8 @@ export function Experience() {
 
               {/* Timeline column */}
               <div className="relative pl-8 md:pb-14">
-                <span aria-hidden="true" className="absolute left-0 top-1.5 size-3 rounded-full bg-accent-gradient ring-4 ring-background" />
-                {!isLast && <span aria-hidden="true" className="absolute bottom-0 left-[5px] top-6 w-0.5 bg-line" />}
+                <span aria-hidden="true" className="timeline-dot absolute left-0 top-1.5 size-3 rounded-full bg-accent-gradient ring-4 ring-background" />
+                {!isLast && <span aria-hidden="true" className="timeline-line absolute bottom-0 left-[5px] top-6 w-0.5 bg-[linear-gradient(to_bottom,var(--accent-from),var(--line)_55%)]" />}
 
                 <h3 className="text-xl font-semibold tracking-tight text-heading">{exp.role}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-text md:text-base">{exp.description}</p>

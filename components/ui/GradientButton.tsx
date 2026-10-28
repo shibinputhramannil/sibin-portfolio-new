@@ -27,7 +27,8 @@ type ButtonProps = BaseProps &
 export type GradientButtonProps = LinkProps | ButtonProps;
 
 const outerStyles =
-  'group inline-flex shrink-0 cursor-pointer select-none rounded-lg bg-accent-gradient p-px transition-transform duration-200 ease-soft motion-safe:hover:scale-[1.02] motion-safe:active:scale-[0.98] aria-disabled:pointer-events-none aria-disabled:opacity-50 disabled:pointer-events-none disabled:opacity-50';
+  // Hover: slight lift plus a soft accent glow; press: quick scale-down. Transforms only under motion-safe.
+  'group inline-flex shrink-0 cursor-pointer select-none rounded-lg bg-accent-gradient p-px transition-[transform,box-shadow] duration-(--duration-base) ease-soft hover:shadow-[0_10px_30px_-14px_var(--accent-from)] motion-safe:hover:-translate-y-px motion-safe:active:translate-y-0 motion-safe:active:scale-[0.98] motion-safe:active:duration-(--duration-fast) aria-disabled:pointer-events-none aria-disabled:opacity-50 disabled:pointer-events-none disabled:opacity-50';
 
 const innerVariants: Record<Variant, string> = {
   primary: 'bg-heading text-background group-hover:bg-heading/90',
@@ -56,7 +57,7 @@ export function GradientButton({
   const inner = (
     <span
       className={cn(
-        'inline-flex w-full items-center justify-center rounded-[calc(var(--radius-lg)-1px)] font-medium transition-colors duration-200',
+        'inline-flex w-full items-center justify-center rounded-[calc(var(--radius-lg)-1px)] font-medium transition-colors duration-(--duration-fast)',
         innerVariants[variant],
         innerSizes[size],
         innerClassName

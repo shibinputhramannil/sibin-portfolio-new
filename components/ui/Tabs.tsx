@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { useSlidingIndicator } from '@/components/motion/useSlidingIndicator';
 
 export interface TabItem<T extends string = string> {
   value: T;
@@ -95,7 +96,10 @@ export interface TabsProps<T extends string> {
   className?: string;
 }
 
-/** Text tab list with an accent underline on the selected tab. */
+/**
+ * Text tab list. The selected tab has a static underline (no-JS fallback) that
+ * a gradient indicator replaces and slides between tabs once measured.
+ */
 export function Tabs<T extends string>({
   idBase,
   label,
@@ -106,13 +110,22 @@ export function Tabs<T extends string>({
 }: TabsProps<T>) {
   const values = items.map((item) => item.value);
   const getTabProps = useRovingTabs(idBase, values, value, onValueChange);
+  const listRef = React.useRef<HTMLDivElement>(null);
+  const indicatorRef = React.useRef<HTMLSpanElement>(null);
+  useSlidingIndicator(listRef, indicatorRef, value, 'underline');
 
   return (
     <div
+      ref={listRef}
       role="tablist"
       aria-label={label}
-      className={cn('flex flex-wrap gap-x-5 gap-y-1 border-b border-line', className)}
+      className={cn('relative flex flex-wrap gap-x-5 gap-y-1 border-b border-line', className)}
     >
+      <span
+        ref={indicatorRef}
+        aria-hidden="true"
+        className="slide-indicator pointer-events-none absolute left-0 top-0 h-0.5 w-[100px] origin-left bg-accent-gradient"
+      />
       {items.map((item, index) => {
         const selected = item.value === value;
         return (
@@ -120,7 +133,7 @@ export function Tabs<T extends string>({
             key={item.value}
             {...getTabProps(index)}
             className={cn(
-              '-mb-px cursor-pointer border-b-2 py-2 text-sm font-medium transition-colors duration-200',
+              '-mb-px cursor-pointer border-b-2 py-2 text-sm font-medium transition-colors duration-(--duration-fast)',
               selected
                 ? 'border-accent-from text-heading'
                 : 'border-transparent text-muted hover:text-heading'

@@ -7,6 +7,7 @@ import { Section } from '@/components/ui/Section';
 import { Accent } from '@/components/ui/SectionHeading';
 import { Tabs, tabPanelProps, type TabItem } from '@/components/ui/Tabs';
 import { Chip } from '@/components/ui/Chip';
+import { cn } from '@/lib/utils';
 
 const categoryIcons: Record<string, React.ElementType> = {
   programming: Code,
@@ -27,6 +28,17 @@ const tabItems: TabItem[] = [
 
 export function Skills() {
   const [selectedCategory, setSelectedCategory] = React.useState('all');
+  // Chip entrances play only after the visitor changes tabs, never on first load.
+  const [hasSwitched, setHasSwitched] = React.useState(false);
+
+  const handleCategory = (value: string) => {
+    setSelectedCategory(value);
+    setHasSwitched(true);
+  };
+
+  // Stagger index for an item, or no animation before the first tab change.
+  const enter = (i: number, className: string) =>
+    hasSwitched ? { className, style: { '--i': i } as React.CSSProperties } : {};
 
   const filteredCategories =
     selectedCategory === 'all'
@@ -49,13 +61,13 @@ export function Skills() {
         label="Skill categories"
         items={tabItems}
         value={selectedCategory}
-        onValueChange={setSelectedCategory}
+        onValueChange={handleCategory}
       />
 
       <div
         key={selectedCategory}
         {...tabPanelProps(TABS_ID, selectedCategory)}
-        className="mt-8 rounded-lg motion-safe:animate-fade-in"
+        className="mt-8 rounded-lg"
       >
         {selectedCategory === 'all' ? (
           <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2">
@@ -68,8 +80,8 @@ export function Skills() {
                     {category.name}
                   </h3>
                   <ul className="mt-3 flex flex-wrap gap-2">
-                    {category.skills.map((skill) => (
-                      <li key={skill.name}>
+                    {category.skills.map((skill, i) => (
+                      <li key={skill.name} {...enter(i, 'chip-in')}>
                         <Chip size="sm">{skill.name}</Chip>
                       </li>
                     ))}
@@ -89,12 +101,19 @@ export function Skills() {
                 </h3>
                 <p className="mt-1 text-sm text-muted">{category.description}</p>
                 <dl className="mt-6 divide-y divide-line border-y border-line">
-                  {category.skills.map((skill) => (
-                    <div key={skill.name} className="grid gap-1 py-3 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6">
+                  {category.skills.map((skill, i) => {
+                    const motion = enter(i, 'detail-in');
+                    return (
+                    <div
+                      key={skill.name}
+                      style={motion.style}
+                      className={cn('grid gap-1 py-3 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6', motion.className)}
+                    >
                       <dt className="text-sm font-medium text-heading">{skill.name}</dt>
                       {skill.note && <dd className="text-sm text-muted">{skill.note}</dd>}
                     </div>
-                  ))}
+                    );
+                  })}
                 </dl>
               </div>
             );

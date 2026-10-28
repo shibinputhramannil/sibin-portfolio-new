@@ -35,9 +35,24 @@
   --warning: #d97706;
   --danger: #dc2626;
 
-  --duration-fast: 150ms;
-  --duration-base: 200ms;
-  --duration-slow: 400ms;
+  /* Motion tokens: one scale for every transition and entrance. */
+  --duration-fast: 150ms; /* hover, press, colour changes */
+  --duration-base: 250ms; /* small state changes, chip entrances */
+  --duration-slow: 500ms; /* indicators, detail panels */
+  --duration-reveal: 700ms; /* scroll reveals, hero entrance */
+  --stagger: 70ms; /* delay between siblings */
+  --stagger-max: 420ms; /* no item waits longer than this */
+  --reveal-distance: 16px;
+  --glow-opacity: 0.1;
+}
+
+/* Lighter motion on small or touch screens. */
+@media (max-width: 767px), (pointer: coarse) {
+  :root {
+    --stagger: 45ms;
+    --stagger-max: 270ms;
+    --reveal-distance: 10px;
+  }
 }
 
 .dark {
@@ -64,6 +79,8 @@
   --success: #22c55e;
   --warning: #f59e0b;
   --danger: #ef4444;
+
+  --glow-opacity: 0.22;
 }
 
 @theme inline {
@@ -92,7 +109,8 @@
   --spacing-gutter: 1.5rem;
   --spacing-section: 5rem;
   --spacing-section-lg: 8rem;
-  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1); /* entrances and indicators */
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1); /* ambient loops */
 
   /* Entrance motion; always applied through motion-safe: */
   --animate-fade-up: fade-up 0.6s var(--ease-soft) both;
@@ -184,6 +202,266 @@ body {
 dialog::backdrop {
   background-color: rgb(0 0 0 / 0.6);
   backdrop-filter: blur(4px);
+}
+
+/* ------------------------------------------------------------------
+   Motion system
+   Everything below runs only when the visitor allows motion. Only
+   transform and opacity animate (plus a one-off blur in the desktop hero
+   entrance and a clip-path image reveal).
+   ------------------------------------------------------------------ */
+
+/* Stagger rule used throughout: delay = min(--i × step, cap). */
+@media (prefers-reduced-motion: no-preference) {
+  /* -- Scroll reveals --------------------------------------------------
+     Content is only hidden once components/motion/RevealController has
+     run and set html[data-motion="ready"]. Without JavaScript, or if the
+     observer fails, nothing is ever hidden. Each element reveals once. */
+  /* Transitions live on the revealed state only: CSS uses the destination
+     state's transition, so gating (hiding off-screen content after hydration)
+     is instant and costs nothing, and only the reveal itself animates. */
+  html[data-motion='ready'] [data-reveal][data-revealed] {
+    transition:
+      opacity var(--duration-reveal) var(--ease-soft),
+      transform var(--duration-reveal) var(--ease-soft);
+    transition-delay: min(calc(var(--i, 0) * var(--stagger)), var(--stagger-max));
+  }
+
+  html[data-motion='ready'] [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-distance), 0);
+  }
+
+  /* Revealed by keyboard focus: show immediately, never fade under the focus ring. */
+  html[data-motion='ready'] [data-reveal][data-revealed][data-reveal-instant] {
+    transition: none;
+  }
+
+  /* -- Hero entrance: plays at first paint, before hydration ------------ */
+  /* "backwards": hidden during the delay, then the element's own (final) styles apply,
+     so no opacity/transform/filter value lingers after the entrance. */
+  .hero-in {
+    animation: hero-in var(--duration-reveal) var(--ease-soft) backwards;
+    animation-delay: min(calc(var(--i, 0) * 90ms), 540ms);
+  }
+
+  /* The large text blocks (greeting, headline, description) are visible from the
+     first frame and only settle into place, so the page's largest content is
+     never held back by the entrance. */
+  .hero-settle {
+    animation: hero-settle var(--duration-reveal) var(--ease-soft) backwards;
+    animation-delay: min(calc(var(--i, 0) * 90ms), 540ms);
+  }
+
+  @media (min-width: 768px) and (hover: hover) {
+    .hero-in {
+      animation-name: hero-in-blur;
+      animation-duration: 850ms;
+    }
+
+    .hero-settle {
+      animation-name: hero-settle-blur;
+      animation-duration: 850ms;
+    }
+  }
+
+  /* Portrait: curtain reveal. "backwards" so the clip is removed afterwards
+     and does not cut off the frame's shadow. */
+  .hero-portrait {
+    animation: image-reveal 1100ms var(--ease-soft) 240ms backwards;
+  }
+
+  /* -- Ambient decoration (paused off-screen via data-paused) ----------- */
+  .ambient-orbit {
+    animation: orbit-spin 60s linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .ambient-glow {
+    animation: glow-drift 18s var(--ease-in-out-soft) infinite alternate;
+  }
+
+  [data-paused] .ambient-orbit,
+  [data-paused] .ambient-glow {
+    animation-play-state: paused;
+  }
+
+  /* Small screens and touch devices: keep the decoration still. */
+  @media (max-width: 767px), (pointer: coarse) {
+    .ambient-orbit,
+    .ambient-glow {
+      animation: none;
+    }
+  }
+
+  /* -- Project detail: content and image transition on selection -------- */
+  .detail-in {
+    animation: detail-in var(--duration-slow) var(--ease-soft) both;
+    animation-delay: min(calc(var(--i, 0) * 50ms), 250ms);
+  }
+
+  .image-reveal {
+    animation: image-reveal 750ms var(--ease-soft) backwards;
+  }
+
+  .image-reveal > * {
+    animation: image-settle 900ms var(--ease-soft) both;
+  }
+
+  /* -- Skill chips after a tab change (not on first load) --------------- */
+  .chip-in {
+    animation: chip-in var(--duration-base) var(--ease-soft) both;
+    animation-delay: min(calc(var(--i, 0) * 18ms), 160ms);
+  }
+
+  /* -- Timeline: line draws down, dot settles, once revealed ------------ */
+  .timeline-line {
+    transform-origin: top;
+  }
+
+  html[data-motion='ready'] [data-reveal][data-revealed] .timeline-line {
+    transition: transform 1100ms var(--ease-soft) 200ms;
+  }
+
+  html[data-motion='ready'] [data-reveal]:not([data-revealed]) .timeline-line {
+    transform: scaleY(0);
+  }
+
+  html[data-motion='ready'] [data-reveal][data-revealed] .timeline-dot {
+    transition: transform var(--duration-slow) var(--ease-soft) 150ms;
+  }
+
+  html[data-motion='ready'] [data-reveal]:not([data-revealed]) .timeline-dot {
+    transform: scale(0.3);
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-distance), 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-in-blur {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none; /* not blur(0): leaves no filter on the text afterwards */
+  }
+}
+
+@keyframes hero-settle {
+  from {
+    transform: translate3d(0, var(--reveal-distance), 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes hero-settle-blur {
+  from {
+    transform: translate3d(0, 14px, 0);
+    filter: blur(5px);
+  }
+  to {
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes image-reveal {
+  from {
+    clip-path: inset(0 0 100% 0 round 0.75rem);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 0.75rem);
+  }
+}
+
+@keyframes image-settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes detail-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow-drift {
+  from {
+    transform: translate3d(-4%, -3%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(5%, 4%, 0) scale(1.08);
+  }
+}
+
+/* -- Sliding indicators (tabs and project picker) ---------------------- */
+.slide-indicator {
+  opacity: 0;
+}
+
+[data-indicator-ready] > .slide-indicator {
+  opacity: 1;
+  transition:
+    transform var(--duration-slow) var(--ease-soft),
+    opacity var(--duration-fast) linear;
+}
+
+/* Once the indicator is measured it replaces the static fallbacks. */
+[data-indicator-ready] > [role='tab'][aria-selected='true'] {
+  border-color: transparent;
+}
+
+[data-indicator-ready] > .picker-tab[aria-selected='true'] {
+  background: transparent;
+}
+
+/* Always show content in print, whatever the reveal state. */
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Accessibility: Respect Reduced Motion */

@@ -11,7 +11,14 @@ export interface SectionProps extends Omit<React.HTMLAttributes<HTMLElement>, 't
   /** `split` puts the heading in a narrow left column from md upward. */
   layout?: 'stack' | 'split';
   containerClassName?: string;
+  /**
+   * Scroll-reveal the content block as one unit. Turn off when the children
+   * reveal their own items (timeline entries, cards) to avoid double motion.
+   */
+  revealContent?: boolean;
 }
+
+const revealStyle = (i: number) => ({ '--i': i }) as React.CSSProperties;
 
 export function Section({
   id,
@@ -21,10 +28,12 @@ export function Section({
   layout = 'stack',
   className,
   containerClassName,
+  revealContent = true,
   children,
   ...props
 }: SectionProps) {
   const headingId = title ? `${id}-heading` : undefined;
+  const contentReveal = revealContent ? { 'data-reveal': '', style: revealStyle(1) } : {};
 
   return (
     <section
@@ -40,15 +49,13 @@ export function Section({
         )}
       >
         {title && (
-          <SectionHeading
-            id={headingId}
-            eyebrow={eyebrow}
-            title={title}
-            description={description}
-            className={layout === 'stack' ? 'mb-8 md:mb-12' : undefined}
-          />
+          <div data-reveal="" style={revealStyle(0)} className={layout === 'stack' ? 'mb-8 md:mb-12' : undefined}>
+            <SectionHeading id={headingId} eyebrow={eyebrow} title={title} description={description} />
+          </div>
         )}
-        {layout === 'split' ? <div className="min-w-0">{children}</div> : children}
+        <div className="min-w-0" {...contentReveal}>
+          {children}
+        </div>
       </Container>
     </section>
   );
