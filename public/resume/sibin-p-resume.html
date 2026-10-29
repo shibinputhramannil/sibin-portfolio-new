@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIBIN P - FULL STACK DEVELOPER RESUME</title>
+  <title>Sibin P – Python Full Stack Developer – Resume</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,156 +12,101 @@
     }
     @page {
       size: A4 portrait;
-      margin: 0.25in 0.40in 0.25in 0.40in;
+      margin: 0.45in 0.5in;
     }
     body {
-      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-      color: #000000;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111111;
       background: #ffffff;
-      line-height: 1.25;
-      font-size: 8.5pt;
-      -webkit-font-smoothing: antialiased;
+      line-height: 1.32;
+      font-size: 9.6pt;
     }
     .page {
       width: 100%;
       max-width: 800px;
       margin: 0 auto;
-      padding: 0;
       background: #ffffff;
     }
     a {
-      color: #0066cc;
-      text-decoration: underline;
-      text-underline-offset: 1.5px;
-    }
-    a:hover {
-      color: #004499;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 3px;
+      color: #0b57a4;
+      text-decoration: none;
     }
     .name {
-      font-size: 17pt;
+      font-size: 20pt;
       font-weight: 700;
-      color: #000000;
-      text-transform: uppercase;
+      letter-spacing: 0.5px;
       line-height: 1.1;
-      margin-bottom: 1px;
     }
     .title {
-      font-size: 10pt;
+      font-size: 11pt;
       font-weight: 700;
-      color: #000000;
-      text-transform: uppercase;
-      margin-bottom: 3px;
+      color: #444444;
+      margin-top: 2px;
     }
     .contact-line {
-      font-size: 8.5pt;
-      color: #000000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0 10px;
-      line-height: 1.2;
-    }
-    .contact-line a {
-      color: #0066cc;
-      text-decoration: underline;
-      font-weight: 500;
+      margin-top: 4px;
+      font-size: 9.2pt;
     }
     .contact-line .sep {
-      color: #000000;
-      user-select: none;
+      color: #888888;
+      padding: 0 5px;
     }
-    .section-title {
-      font-size: 9.5pt;
+    h2 {
+      font-size: 10.5pt;
       font-weight: 700;
       text-transform: uppercase;
-      color: #000000;
-      margin-top: 3.5px;
-      margin-bottom: 0px;
-      line-height: 1.15;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid #999999;
+      padding-bottom: 2px;
+      margin: 11px 0 5px;
     }
-    .section-line {
-      border: none;
-      border-top: 1px solid #000000;
-      margin: 1px 0 2px 0;
+    p.summary {
+      text-align: left;
     }
-    .summary-text {
-      font-size: 8.4pt;
-      color: #000000;
-      line-height: 1.22;
-      text-align: justify;
-      margin-bottom: 1px;
+    .skills div {
+      margin-bottom: 1.5px;
     }
-    .skills-block {
-      font-size: 8.3pt;
-      line-height: 1.22;
-      margin-bottom: 1px;
+    .entry {
+      margin-bottom: 5px;
+      break-inside: avoid;
     }
-    .skills-block div {
-      margin-bottom: 1px;
-    }
-    .skills-block strong {
-      color: #000000;
-      font-weight: 700;
-    }
-    .row-heading {
+    .row {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      font-size: 8.4pt;
-      margin-top: 1.5px;
-      margin-bottom: 0.5px;
-      line-height: 1.2;
+      gap: 12px;
     }
-    .row-left {
-      color: #000000;
-      flex-grow: 1;
-      padding-right: 8px;
-    }
-    .row-left strong {
-      font-weight: 700;
-    }
-    .row-right {
+    .row .right {
       flex-shrink: 0;
-      text-align: right;
-      font-size: 8.4pt;
       white-space: nowrap;
+      color: #333333;
     }
-    .row-right a {
-      color: #0066cc;
-      font-weight: 600;
+    .row .right a {
+      font-size: 8.8pt;
     }
-    .row-right.italic {
-      font-style: italic;
+    .muted {
+      color: #444444;
     }
-    ul.bullet-list {
-      list-style-type: disc;
-      margin: 0 0 1.5px 12pt;
+    ul {
+      margin: 2px 0 0 14px;
       padding: 0;
     }
-    ul.bullet-list li {
-      font-size: 8.3pt;
-      color: #000000;
-      line-height: 1.2;
-      margin-bottom: 0.5px;
+    li {
+      margin-bottom: 1.5px;
     }
     @media screen {
       body {
         background: #f3f4f6;
-        padding: 20px;
+        padding: 24px 12px;
       }
       .page {
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
-        padding: 24px 30px;
+        padding: 40px 48px;
       }
       .print-btn {
         display: block;
-        margin: 0 auto 16px auto;
+        margin: 0 auto 16px;
         padding: 8px 18px;
         background: #111827;
         color: #ffffff;
@@ -169,6 +114,15 @@
         border-radius: 6px;
         font-weight: 600;
         cursor: pointer;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      .page {
+        padding: 24px 18px;
+      }
+      .row {
+        flex-direction: column;
+        gap: 0;
       }
     }
     @media print {
@@ -189,180 +143,144 @@
   </style>
 </head>
 <body>
-  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+  <button class="print-btn" type="button" onclick="window.print()">Print / Save as PDF</button>
 
-  <div class="page">
-    <!-- HEADER -->
-    <div class="header">
+  <main class="page">
+    <header>
       <div class="name">SIBIN P</div>
-      <div class="title">FULL STACK DEVELOPER</div>
+      <div class="title">Python Full Stack Developer</div>
       <div class="contact-line">
-        <a href="tel:+918590675644">+91 8590675644</a>
-        <span class="sep">|</span>
-        <a href="mailto:puthramannilshibin@gmail.com">puthramannilshibin@gmail.com</a>
-        <span class="sep">|</span>
-        <a href="https://github.com/shibinputhramannil" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <span class="sep">|</span>
-        <a href="https://www.linkedin.com/in/shibi-ii-a23366437/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <span class="sep">|</span>
-        <a href="https://sibin-p.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        <a href="tel:+918590675644">+91 8590675644</a><span class="sep">|</span><a href="mailto:puthramannilshibin@gmail.com">puthramannilshibin@gmail.com</a><span class="sep">|</span>Calicut, Kerala
       </div>
-    </div>
+      <div class="contact-line">
+        <a href="https://github.com/shibinputhramannil">github.com/shibinputhramannil</a><span class="sep">|</span><a href="https://www.linkedin.com/in/shibi-ii-a23366437/">linkedin.com/in/shibi-ii-a23366437</a><span class="sep">|</span><a href="https://sibin-p.vercel.app/">sibin-p.vercel.app</a>
+      </div>
+    </header>
 
-    <!-- PROFESSIONAL SUMMARY -->
-    <div class="section-title">PROFESSIONAL SUMMARY</div>
-    <hr class="section-line" />
-    <p class="summary-text">
-      Full Stack Developer specializing in Python, Django, Django REST Framework, and PostgreSQL, with hands-on experience building database-driven applications and responsive user interfaces in React. Experienced in developing robust REST APIs, relational schemas, and modular ERP/CRM platforms with tenant isolation. Solid foundation in machine learning and artificial intelligence, with a focus on writing clean, maintainable, and pragmatic code.
-    </p>
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">
+        Python Full Stack Developer (B.Com graduate) building Django REST Framework APIs on PostgreSQL and React frontends.
+        Built a multi-tenant ERP with double-entry accounting, and contributed to a team-built CRM during a CRM developer internship.
+        Background in CRM data analysis (Excel, Power BI) and AI/ML internship work.
+      </p>
+    </section>
 
-    <!-- TECHNICAL SKILLS -->
-    <div class="section-title">TECHNICAL SKILLS</div>
-    <hr class="section-line" />
-    <div class="skills-block">
-      <div><strong>Programming:</strong> Python, SQL, HTML, CSS, JavaScript, TypeScript (Basic)</div>
-      <div><strong>Backend:</strong> Django, Django REST Framework, Flask, REST API Development</div>
-      <div><strong>Frontend:</strong> React, Next.js, Redux Toolkit, Tailwind CSS, HTML, CSS, JavaScript, TypeScript</div>
-      <div><strong>Databases:</strong> PostgreSQL, MySQL, MongoDB, SQLite</div>
-      <div><strong>Data &amp; AI:</strong> Pandas, NumPy, Machine Learning, Artificial Intelligence, Deep Learning, PCA, ANN</div>
-      <div><strong>Tools:</strong> Git, GitHub, VS Code, PyCharm, Postman, Jupyter Notebook</div>
-      <div><strong>Core:</strong> Data Structures &amp; Algorithms, OOP, Database Management, Problem Solving</div>
-    </div>
+    <section class="skills">
+      <h2>Skills</h2>
+      <div><strong>Backend:</strong> Python, Django, Django REST Framework, REST APIs, JWT (SimpleJWT)</div>
+      <div><strong>Frontend:</strong> React, Redux Toolkit, JavaScript, HTML, CSS, Tailwind CSS</div>
+      <div><strong>Databases:</strong> PostgreSQL, MySQL</div>
+      <div><strong>Tools:</strong> Git, GitHub Actions, Docker, Postman, REDYRECKNOR CRM</div>
+      <div><strong>Data:</strong> Pandas, NumPy, Excel, Power BI</div>
+    </section>
 
-    <!-- PROJECT EXPERIENCE -->
-    <div class="section-title">PROJECT EXPERIENCE</div>
-    <hr class="section-line" />
+    <section>
+      <h2>Experience</h2>
 
-    <!-- ICORP ERP PLATFORM -->
-    <div class="row-heading">
-      <div class="row-left">
-        <a href="https://github.com/shibinputhramannil/IcorpERP" target="_blank" rel="noopener noreferrer" style="color:#000000; text-decoration:none;"><strong>ICORP ERP PLATFORM</strong></a> | Django REST Framework, PostgreSQL, React, Docker, AI Assistant
+      <div class="entry">
+        <div class="row">
+          <div><strong>Python Full Stack Developer</strong> <span class="muted">| AX Ventures, Calicut</span></div>
+          <div class="right">Sep 2026 – Present</div>
+        </div>
+        <ul>
+          <li>Working on the backend of BYCE, a gym membership platform for customers and gym owners in Kerala, using Django REST Framework and PostgreSQL.</li>
+          <li>Documented the MVP backend architecture: data model, REST API contract, authentication and role permissions, location-based gym discovery, and Razorpay payment and booking flows.</li>
+        </ul>
       </div>
-      <div class="row-right">
-        <a href="https://github.com/shibinputhramannil/IcorpERP" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </div>
-    </div>
-    <ul class="bullet-list">
-      <li>Built a production-ready, multi-tenant ERP platform integrating inventory control, sales, purchasing, and double-entry accounting.</li>
-      <li>Implemented tenant data isolation, secure authentication, standardized CRUD REST endpoints, and Docker container orchestration.</li>
-      <li>Integrated an AI operational assistant and workspace collaboration tools (real-time notes, email, document center).</li>
-    </ul>
 
-    <!-- ENTERPRISE CRM PLATFORM -->
-    <div class="row-heading">
-      <div class="row-left">
-        <a href="https://github.com/shibinputhramannil" target="_blank" rel="noopener noreferrer" style="color:#000000; text-decoration:none;"><strong>ENTERPRISE CRM PLATFORM</strong></a> | React 19, Vite, Django REST, PostgreSQL, Twilio Voice API, SimpleJWT
+      <div class="entry">
+        <div class="row">
+          <div><strong>CRM Developer Intern</strong> <span class="muted">| Upcode Software Labs Pvt. Ltd.</span></div>
+          <div class="right">2026</div>
+        </div>
+        <ul>
+          <li>Worked in a six-person team on a live CRM built with Django, Django REST Framework, PostgreSQL and React.</li>
+          <li>Built REST endpoints and database models from business requirements; tested APIs with Postman and supported frontend integration.</li>
+        </ul>
       </div>
-      <div class="row-right">
-        <a href="https://github.com/shibinputhramannil" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </div>
-    </div>
-    <ul class="bullet-list">
-      <li>Engineered an enterprise CRM system with lead tracking pipelines, deal progression stages, and customer support ticketing.</li>
-      <li>Integrated Twilio Voice API for automated direct calling and bridge calling with resilient simulated mode fallback.</li>
-      <li>Implemented role-based permissions and verified API reliability with automated GitHub Actions CI/CD workflows.</li>
-    </ul>
 
-    <!-- FACE RECOGNITION -->
-    <div class="row-heading">
-      <div class="row-left">
-        <a href="https://github.com/shibinputhramannil/Face_Recognition-PCA-ANN" target="_blank" rel="noopener noreferrer" style="color:#000000; text-decoration:none;"><strong>FACE RECOGNITION PIPELINE (PCA &amp; ANN)</strong></a> | Python, NumPy, OpenCV, PCA, ANN
+      <div class="entry">
+        <div class="row">
+          <div><strong>Artificial Intelligence Intern</strong> <span class="muted">| Internship Studio, Pune</span></div>
+          <div class="right">4 Months</div>
+        </div>
+        <ul>
+          <li>Built a face recognition model using PCA for feature extraction and an ANN trained with backpropagation (<a href="https://github.com/shibinputhramannil/Face_Recognition-PCA-ANN">github.com/shibinputhramannil/Face_Recognition-PCA-ANN</a>).</li>
+        </ul>
       </div>
-      <div class="row-right">
-        <a href="https://github.com/shibinputhramannil/Face_Recognition-PCA-ANN" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </div>
-    </div>
-    <ul class="bullet-list">
-      <li>Implemented surrogate covariance PCA for eigenface feature extraction and dimensionality reduction.</li>
-      <li>Built and evaluated an Artificial Neural Network (ANN) classification model using backpropagation with custom confidence thresholding.</li>
-    </ul>
 
-    <!-- TRANST BOTANICAL E-COMMERCE -->
-    <div class="row-heading">
-      <div class="row-left">
-        <a href="https://github.com/shibinputhramannil/transt-ecommerce" target="_blank" rel="noopener noreferrer" style="color:#000000; text-decoration:none;"><strong>TRANST BOTANICAL E-COMMERCE PLATFORM</strong></a> | Django REST, React, Redux Toolkit, PostgreSQL
+      <div class="entry">
+        <div class="row">
+          <div><strong>CRM Data Analyst</strong> <span class="muted">| Image Mobiles &amp; Computers, Perinthalmanna</span></div>
+          <div class="right">Sep 2024 – Oct 2025</div>
+        </div>
+        <ul>
+          <li>Analyzed sales, leads and customer data using Excel and Power BI.</li>
+          <li>Studied the build of the REDYRECKNOR CRM platform, including how its modules and database are structured.</li>
+        </ul>
       </div>
-      <div class="row-right">
-        <a href="https://github.com/shibinputhramannil/transt-ecommerce" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </div>
-    </div>
-    <ul class="bullet-list">
-      <li>Engineered a full-stack e-commerce system with stateless SimpleJWT authentication, protected routes, and responsive UI.</li>
-      <li>Implemented server-authoritative cart validation, atomic checkout transactions (transaction.atomic()), and Redux Toolkit state.</li>
-    </ul>
+    </section>
 
-    <!-- REDUX E-COMMERCE -->
-    <div class="row-heading">
-      <div class="row-left">
-        <strong>REDUX E-COMMERCE PLATFORM (CORRIDOR B2B)</strong> | React, Next.js, TypeScript, Redux Toolkit, Tailwind CSS
-      </div>
-      <div class="row-right"></div>
-    </div>
-    <ul class="bullet-list">
-      <li>Developed a structured trade platform featuring quotation management (RFQ) and multi-attribute product comparison matrices.</li>
-      <li>Managed centralized application state using Redux Toolkit slices with strict TypeScript type safety.</li>
-    </ul>
+    <section>
+      <h2>Projects</h2>
 
-    <!-- EXPERIENCE -->
-    <div class="section-title">EXPERIENCE</div>
-    <hr class="section-line" />
+      <div class="entry">
+        <div class="row">
+          <div><strong>ICORP ERP Platform</strong> <span class="muted">| Django REST, PostgreSQL, React, Docker</span></div>
+          <div class="right"><a href="https://github.com/shibinputhramannil/IcorpERP">github.com/shibinputhramannil/IcorpERP</a></div>
+        </div>
+        <ul>
+          <li>Built a multi-tenant ERP covering inventory, sales, purchasing and double-entry accounting.</li>
+          <li>Implemented tenant data isolation, secure authentication and standardized CRUD REST endpoints.</li>
+          <li>Containerized with Docker; added an AI assistant and workspace tools (notes, email, documents).</li>
+        </ul>
+      </div>
 
-    <div class="row-heading">
-      <div class="row-left">
-        <strong>CRM DEVELOPER INTERN</strong> | Upcode Software Labs Pvt. Ltd.
+      <div class="entry">
+        <div class="row">
+          <div><strong>Enterprise CRM Platform</strong> <span class="muted">| Team project · React 19, Django REST, PostgreSQL</span></div>
+        </div>
+        <ul>
+          <li>Built the backend activities module (notes and a reusable activity framework) and completed the companies module.</li>
+          <li>Implemented support-ticket features (list, detail, edit, owner filters) and the lead profile and activity timeline in React.</li>
+          <li>After the internship, containerized my copy with Docker Compose and added GitHub Actions CI (Django checks, frontend and Docker builds).</li>
+        </ul>
       </div>
-      <div class="row-right italic">6 Months</div>
-    </div>
-    <ul class="bullet-list">
-      <li>Worked on development of a live CRM project using Django, Django REST Framework, PostgreSQL, and ReactJS.</li>
-      <li>Analyzed and implemented business requirements, building clean RESTful API endpoints and relational schemas.</li>
-      <li>Collaborated on frontend integration and conducted comprehensive API endpoint testing using Postman.</li>
-    </ul>
 
-    <div class="row-heading">
-      <div class="row-left">
-        <strong>ARTIFICIAL INTELLIGENCE INTERN</strong> | Internship Studio, Pune
+      <div class="entry">
+        <div class="row">
+          <div><strong>TRANST E-commerce</strong> <span class="muted">| Django REST, React, Redux Toolkit, PostgreSQL</span></div>
+          <div class="right"><a href="https://github.com/shibinputhramannil/transt-ecommerce">github.com/shibinputhramannil/transt-ecommerce</a></div>
+        </div>
+        <ul>
+          <li>Built JWT authentication, protected routes and server-side cart validation.</li>
+          <li>Implemented atomic checkout using <code>transaction.atomic()</code>.</li>
+        </ul>
       </div>
-      <div class="row-right italic">4 Months</div>
-    </div>
-    <ul class="bullet-list">
-      <li>Worked on a face recognition project using Principal Component Analysis (PCA) and Artificial Neural Networks (ANN).</li>
-      <li>Performed data preprocessing and feature extraction using PCA.</li>
-      <li>Built and evaluated ANN models for face recognition using backpropagation algorithms.</li>
-    </ul>
+    </section>
 
-    <!-- EDUCATION -->
-    <div class="section-title">EDUCATION</div>
-    <hr class="section-line" />
-    <div class="row-heading">
-      <div class="row-left">
-        <strong>Bachelor Degree</strong> | MES Kalladi College
+    <section>
+      <h2>Education and Training</h2>
+      <div class="entry">
+        <div class="row">
+          <div><strong>B.Com</strong> <span class="muted">| MES Kalladi College</span></div>
+          <div class="right">2023</div>
+        </div>
       </div>
-      <div class="row-right"></div>
-    </div>
-
-    <!-- CERTIFICATIONS -->
-    <div class="section-title">CERTIFICATIONS</div>
-    <hr class="section-line" />
-    <div class="row-heading">
-      <div class="row-left">
-        <strong>Python Full Stack Developer</strong> | Upcode Software Labs
+      <div class="entry">
+        <div class="row">
+          <div><strong>Data Analysis (Python, Excel, Power BI, Machine Learning)</strong> <span class="muted">| Techolas Technologies, Calicut</span></div>
+          <div class="right">Aug 2023 – May 2024</div>
+        </div>
       </div>
-      <div class="row-right">8 Months</div>
-    </div>
-    <div class="row-heading">
-      <div class="row-left">
-        <strong>CRM Developer Internship</strong> | Upcode Software Labs
+      <div class="entry">
+        <div class="row">
+          <div><strong>Python Full Stack Development Course</strong> <span class="muted">| Upcode Software Labs Pvt. Ltd.</span></div>
+          <div class="right">2026</div>
+        </div>
       </div>
-      <div class="row-right">6 Months</div>
-    </div>
-    <div class="row-heading">
-      <div class="row-left">
-        <strong>Artificial Intelligence Internship</strong> | Internship Studio
-      </div>
-      <div class="row-right">4 Months</div>
-    </div>
-
-  </div>
+    </section>
+  </main>
 </body>
 </html>

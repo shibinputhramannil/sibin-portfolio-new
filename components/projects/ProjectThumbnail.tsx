@@ -79,7 +79,7 @@ export function ProjectThumbnail({ project, index, size = 'lg', className }: Pro
       <div className={cn('relative overflow-hidden', className)}>
         <Image
           src={project.image}
-          alt={decorative ? '' : `Screenshot of ${project.title}`}
+          alt={decorative ? '' : (project.imageAlt ?? `Screenshot of ${project.title}`)}
           fill
           sizes={decorative ? '140px' : '(min-width: 768px) 480px, 100vw'}
           className="object-cover object-top"

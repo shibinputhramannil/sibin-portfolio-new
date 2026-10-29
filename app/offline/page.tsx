@@ -3,7 +3,7 @@ import { GradientButton } from '@/components/ui/GradientButton';
 import { resume, site } from '@/lib/site';
 
 export const metadata = {
-  title: 'Offline Mode | Sibin P - Full Stack Developer',
+  title: 'Offline Mode | Sibin P - Python Full Stack Developer',
   description: 'You are currently browsing the portfolio offline. Previously cached content remains available.',
   // A service-worker fallback, not content: keep it out of search results, and
   // do not inherit the home page's canonical (noindex + foreign canonical conflict).

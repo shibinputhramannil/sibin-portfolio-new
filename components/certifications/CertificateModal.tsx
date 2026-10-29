@@ -13,8 +13,8 @@ interface CertificateModalProps {
   returnFocusRef?: React.RefObject<HTMLElement | null>;
 }
 
-// Credential IDs in data/certifications.ts are not displayed until they are
-// confirmed against the issuers' records.
+// No credential IDs are stored or shown: none could be confirmed against an
+// issued certificate. Add one only from the certificate itself.
 export function CertificateModal({ cert, onClose, returnFocusRef }: CertificateModalProps) {
   return (
     <Modal

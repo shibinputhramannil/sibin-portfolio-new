@@ -25,11 +25,11 @@ export function Footer() {
             </div>
             <p className="font-mono text-xs font-medium uppercase tracking-wider text-muted">{site.role}</p>
             <p className="max-w-sm text-sm leading-relaxed text-muted">
-              Full Stack Developer specializing in Python, Django REST Framework, React, and PostgreSQL. Building practical, scalable, and maintainable software.
+              Python Full Stack Developer specializing in Django REST Framework, React, and PostgreSQL. Building practical, scalable, and maintainable software.
             </p>
           </div>
 
-          <nav aria-label="Footer" className="md:col-span-4">
+          <nav aria-label="Footer" className="md:col-span-4 lg:col-span-3">
             <h2 className="mb-3 font-mono text-xs uppercase tracking-wider text-muted">Navigation</h2>
             <ul className="grid grid-cols-2 gap-2 text-sm">
               {navItems.map((item) => (
@@ -42,16 +42,21 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="md:col-span-3">
+          {/* Wide enough from lg for the email to stay on one line. */}
+          <div className="md:col-span-3 lg:col-span-4">
             <h2 className="mb-3 font-mono text-xs uppercase tracking-wider text-muted">Direct Contact</h2>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="flex items-center gap-2 break-all text-text transition-colors duration-200 hover:text-heading"
+                  className="flex items-center gap-2 text-text transition-colors duration-200 hover:text-heading"
                 >
                   <Mail className="size-3.5 shrink-0 text-muted" aria-hidden="true" />
-                  <span>{contact.email}</span>
+                  {/* When the column is narrow, wrap at the @ rather than mid-word. */}
+                  <span className="min-w-0 break-words">
+                    {contact.email.split('@')[0]}
+                    <wbr />@{contact.email.split('@')[1]}
+                  </span>
                 </a>
               </li>
               <li>

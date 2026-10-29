@@ -29,6 +29,8 @@
   --heading: #09090b;
   --line: #e4e4e7;
   --line-strong: #d4d4d8;
+  /* Form-field boundaries need 3:1 against their surface (WCAG 1.4.11): 4.8:1 on white. */
+  --line-input: #71717a;
   --accent-from: #4f46e5;
   --accent-to: #0891b2;
   --success: #16a34a;
@@ -74,6 +76,7 @@
   --heading: #ffffff;
   --line: #27272a;
   --line-strong: #3f3f46;
+  --line-input: #71717a; /* 3.7:1 on the dark card surface */
   --accent-from: #6366f1;
   --accent-to: #22d3ee;
   --success: #22c55e;
@@ -96,6 +99,7 @@
   --color-muted: var(--muted-foreground);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
+  --color-line-input: var(--line-input);
   --color-accent-from: var(--accent-from);
   --color-accent-to: var(--accent-to);
   --color-ring: var(--ring);
@@ -107,8 +111,9 @@
 @theme {
   --container-content: 64rem;
   --spacing-gutter: 1.5rem;
-  --spacing-section: 5rem;
-  --spacing-section-lg: 8rem;
+  /* Applied top and bottom on every section, so the gap between sections is twice this. */
+  --spacing-section: 4rem;
+  --spacing-section-lg: 6rem;
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1); /* entrances and indicators */
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1); /* ambient loops */
 

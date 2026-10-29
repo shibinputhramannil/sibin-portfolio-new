@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   description: site.description,
   keywords: [
     'Sibin P',
-    'Full Stack Developer',
+    'Python Full Stack Developer',
     'Python Developer',
     'Django REST Framework',
     'PostgreSQL',

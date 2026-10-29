@@ -6,25 +6,26 @@ export const site = {
   name: 'Sibin P',
   wordmark: 'SIBIN P',
   initials: 'SP',
-  role: 'Full Stack Developer',
+  // Title and location follow the CV.
+  role: 'Python Full Stack Developer',
   description:
-    'Full Stack Developer specializing in Python, Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
+    'Python Full Stack Developer specializing in Django, REST APIs, React, PostgreSQL, ERP/CRM systems and applied AI.',
   url: 'https://sibin-p.vercel.app',
   location: {
-    short: 'Malappuram, India',
-    full: 'Malappuram, Perinthalmanna, Kerala, India'
+    short: 'Calicut, India',
+    full: 'Calicut, Kerala, India'
   },
   // 1000px WebP (q90, ~67 KB) derived from the untouched original /images/sibin.png (1254px, ~1.7 MB).
   portrait: {
     src: '/images/sibin.webp',
     original: '/images/sibin.png',
-    alt: 'Sibin P - Full Stack Developer',
+    alt: 'Sibin P, Python Full Stack Developer',
     width: 1000,
     height: 1000
   },
   ogImage: {
     src: '/images/og-image.png',
-    alt: 'Sibin P, Full Stack Developer: Python, Django REST Framework, PostgreSQL and React',
+    alt: 'Sibin P, Python Full Stack Developer, Calicut: Python, Django REST Framework, PostgreSQL and React',
     width: 1200,
     height: 630
   }
@@ -54,7 +55,7 @@ export const social = {
   }
 } as const;
 
-const RESUME_VERSION = '20260923';
+const RESUME_VERSION = '20261028-2';
 
 export const resume = {
   pdfPath: '/resume/sibin-p-full-stack-developer-resume.pdf',

@@ -1,9 +1,11 @@
 import { Project } from '@/types';
 
+/** The project lineup, in display order (numbering follows this order). */
 export const projects: Project[] = [
   {
     id: 'icorp-erp',
     title: 'ICORP ERP Platform',
+    shortTitle: 'IcorpERP',
     tagline: 'Multi-Tenant Enterprise Resource Planning & Operations Architecture',
     description:
       'A production-ready, multi-tenant Enterprise Resource Planning system engineered for corporate business management, tenant isolation, and modular services using Django REST Framework and PostgreSQL with integrated AI Assistant capabilities.',
@@ -41,6 +43,13 @@ export const projects: Project[] = [
     ],
     githubUrl: 'https://github.com/shibinputhramannil/IcorpERP',
     featured: true,
+    // Genuine capture of the running app (local Docker, the app's own seed_demo_data
+    // plus three fictional documents uploaded through its UI). Original 2880x1800 PNG
+    // kept outside the repo: C:\shibin\screenshots\icorp-erp\dashboard-dark-nexus-global-activity.png
+    image: '/images/projects/icorp-erp-dashboard.webp',
+    imageAlt:
+      'IcorpERP dashboard in dark mode with fictional demo data, showing company, employee and lead counts, the module sidebar, and recent document-upload notifications.',
+    imageCaption: 'Screenshot · fictional demo data',
     specs: [
       { label: 'Architecture', value: 'Django REST + PostgreSQL' },
       { label: 'Multi-Tenancy', value: 'Tenant Data Isolation' },
@@ -54,11 +63,12 @@ export const projects: Project[] = [
   {
     id: 'enterprise-crm',
     title: 'Enterprise CRM Platform',
+    shortTitle: 'Enterprise CRM',
     tagline: 'Customer Relationship Management & Automated Sales Pipeline',
     description:
-      'A full-stack, enterprise-grade CRM system featuring automated lead management, multi-stage sales deals, customer support ticketing, and Twilio-powered direct and bridge voice call integrations.',
+      'A collaborative full-stack CRM built by a six-person team during my Upcode Software Labs internship, featuring lead management, multi-stage sales deals, customer support ticketing, and Twilio-powered direct and bridge voice calling.',
     longDescription:
-      'Developed as a production CRM application with React 19/Vite frontend and Django 6 REST Framework backend. It delivers comprehensive customer relationship lifecycle management including company directories, lead capture and qualification, deal stage progression, customer support ticketing, activity audit timelines, and programmatic voice calling via Twilio API with automated simulation fallback.',
+      'Built as a live team project during my Upcode Software Labs internship, with a React 19/Vite frontend and a Django 6 REST Framework backend. The platform covers company directories, lead capture and qualification, deal stage progression, customer support ticketing, activity timelines with tasks and meeting reminders, and Twilio voice calling (direct and bridge calls) with a simulated fallback mode. Twilio calling was built by other team members; my individual contributions are listed separately.',
     category: 'Full Stack',
     status: 'COMPLETED',
     technologies: [
@@ -70,24 +80,42 @@ export const projects: Project[] = [
       'PostgreSQL 17',
       'SimpleJWT',
       'Twilio Voice API',
-      'Docker Compose',
-      'GitHub Actions CI/CD'
+      'Docker Compose (post-internship)',
+      'GitHub Actions CI (post-internship)'
     ],
     documentedModules: [
-      'Companies Directory & Organizational Hierarchy',
+      'Companies Directory',
       'Leads Management & Qualification Pipeline',
       'Deals Pipeline with Stage Progression Tracking',
-      'Customer Support Tickets & Escalation Workflows',
+      'Customer Support Tickets',
       'Twilio Voice Calling (Direct Call & Bridge Call API)',
       'Activity Timeline, Task Scheduling & Reminders',
-      'SimpleJWT Authentication & Role-Based Access Control',
-      'GitHub Actions Automated CI/CD Pipelines'
+      'SimpleJWT Authentication & Admin Permission Checks',
+      'GitHub Actions CI (post-internship addition): Django Checks, Frontend Build & Docker Build Validation'
     ],
     architectureHighlights: [
       'Twilio telecommunication integration supporting live calls with resilient simulated mode fallback',
       'Normalized PostgreSQL 17 relational schemas across leads, deals, tickets, and calls',
-      'Role-based permission guards (Admin, Sales Reps, Managers) with JWT token refresh',
-      'Containerized multi-service deployment with Docker Compose and GitHub Actions testing'
+      'Admin permission checks with JWT token refresh',
+      'Containerized multi-service setup with Docker Compose, validated by GitHub Actions builds (added to my copy after the internship)'
+    ],
+    // Verified against the team repository's commit history (six contributors).
+    // Twilio calling was built by other team members and is not listed as a contribution.
+    context: 'Team project · Upcode Software Labs internship',
+    contributions: [
+      'Built the backend activities module: notes and a reusable activity framework shared across CRM records (Django REST Framework).',
+      'Completed the companies module: model fields aligned with the frontend, plus Django admin configuration.',
+      'Implemented support-ticket features: ticket list, detail panel, edit form, dynamic owner filters and status options in React, plus ticket email-activity integration.',
+      'Built the lead profile and activity timeline UI.'
+    ],
+    // Added after the internship ended, to my personal copy of the codebase only.
+    additionalContributions: [
+      {
+        heading: 'Post-internship additions',
+        items: [
+          'Containerised my personal copy of the codebase with Docker Compose and added a GitHub Actions CI pipeline (Django checks, frontend build and Docker build validation).'
+        ]
+      }
     ],
     // No public CRM repository exists on the profile (checked against the GitHub API),
     // so this links to the profile and is labelled as such.
@@ -96,8 +124,51 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    id: 'byce-gym-app',
+    title: 'BYCE Gym App',
+    tagline: 'Android gym-membership app prototype for members and gym owners',
+    description:
+      'A native Android app prototype built with Kotlin and Jetpack Compose, with separate member and gym-owner experiences: gym discovery on a map of Kerala, memberships with QR passes, check-in and visit history for members; attendance, bookings, customers, plans, payments, staff and reports for owners. Screens currently run on mock data through a repository layer; the Django REST Framework backend is a separate project, not yet connected to this app.',
+    longDescription:
+      'BYCE is a team-built Android app prototype for gym members and gym owners, written in Kotlin with Jetpack Compose and Material 3. Members get onboarding, gym discovery with a map of Kerala gym locations, gym details, membership and check-in screens with QR passes, visit history and a profile. Gym owners get a dashboard and dedicated screens for attendance, bookings, customers, memberships, plans, payments, staff, reports, notifications, an activity log and settings, plus an in-app QR and barcode scanner for fast check-in. All screens currently run on mock data served by a repository layer; no backend is connected yet. The BYCE backend (Django REST Framework and PostgreSQL) is a separate project; its architecture, data model and API contract are documented, and its code is not part of this app.',
+    category: 'Mobile',
+    status: 'ONGOING',
+    technologies: [
+      'Kotlin',
+      'Jetpack Compose',
+      'Material 3',
+      'CameraX',
+      'ML Kit Barcode Scanning',
+      'ZXing',
+      'Flutter',
+      'MapLibre',
+      'OpenFreeMap'
+    ],
+    documentedModules: [
+      'Member Onboarding & Sign-in Screens',
+      'Gym Discovery with Kerala Location Map & City Filter',
+      'Membership Screens with QR Passes',
+      'Member Check-in & Visit History',
+      'Gym Owner Dashboard',
+      'Owner Attendance, Bookings & Customer Management Screens',
+      'Owner Plans, Memberships & Payments Screens',
+      'Owner Staff, Reports, Notifications & Activity Log',
+      'QR & Barcode Check-in Scanner (CameraX + ML Kit)'
+    ],
+    context: 'Team project',
+    contributions: [
+      'Built the gym-owner QR and barcode check-in scanner with CameraX and ML Kit barcode scanning.',
+      'Added interactive attendance dialogs with member QR passes, and further operational features for the gym-owner dashboard.',
+      'Built the gym discovery map of Kerala gym locations with a city filter.',
+      'Prototyped a separate Flutter map explorer using MapLibre and OpenFreeMap vector tiles.'
+    ],
+    // No repository link until the public repository is confirmed to be the current project.
+    featured: true
+  },
+  {
     id: 'transt-ecommerce',
     title: 'TRANST Botanical E-Commerce Platform',
+    shortTitle: 'TRANST',
     tagline: 'Production-Ready Botanical Lifestyle E-Commerce with Django REST & Redux Toolkit',
     description:
       'A production-ready botanical lifestyle e-commerce application engineered with Django REST Framework and React/Redux Toolkit, featuring stateless JWT auth, server-authoritative cart validation, and atomic checkout transactions.',
@@ -139,6 +210,7 @@ export const projects: Project[] = [
   {
     id: 'face-recognition-pca-ann',
     title: 'Face Recognition Pipeline (PCA & ANN)',
+    shortTitle: 'Face Recognition',
     tagline: 'Computer Vision & Deep Learning Feature Extraction',
     description:
       'End-to-end face recognition and classification system implementing eigenface dimensionality reduction with surrogate covariance PCA and a trained Artificial Neural Network (ANN) classifier.',
@@ -170,6 +242,51 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/shibinputhramannil/Face_Recognition-PCA-ANN',
     featured: true
   },
+  {
+    id: 'coreknowledge',
+    title: 'CoreKnowledge Enterprise Knowledge Platform',
+    shortTitle: 'CoreKnowledge',
+    tagline: 'Prototype of an organisational document Q&A platform with cited answers',
+    description:
+      'A Django REST and React prototype of an organisational knowledge platform: teams upload documents, a Celery task extracts their text (PDF, DOCX, TXT) and splits it into overlapping chunks, and questions are answered with citations to the source sections. Vector search and LLM answer generation are scaffolded but not yet connected; the current build returns sample results.',
+    longDescription:
+      'CoreKnowledge is a prototype of a multi-tenant knowledge platform where an organisation uploads its documents and team members ask questions answered with citations. The Django REST backend has organisation-scoped users with roles and JWT authentication, document and chunk models with a pgvector embedding field, a Celery ingestion task that extracts text from PDF, DOCX and TXT files and splits it into overlapping chunks, conversation, message and citation models, and query audit logs for analytics. The React and TypeScript frontend covers landing, assistant, documents, search, history, analytics, users and settings pages on a mock data layer. Embedding generation, vector similarity search and LLM answers are scaffolded but not yet connected, so the current build returns sample relevance scores and answers. The full stack runs with Docker Compose (PostgreSQL with pgvector, Redis, Django, Celery and the frontend).',
+    category: 'Full Stack',
+    status: 'ONGOING',
+    technologies: [
+      'Django 5',
+      'Django REST Framework',
+      'SimpleJWT',
+      'Celery',
+      'Redis',
+      'PostgreSQL',
+      'pgvector',
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS',
+      'MUI',
+      'Docker Compose'
+    ],
+    documentedModules: [
+      'Organisation Multi-tenancy with Roles & JWT Authentication',
+      'Document Upload & Celery Ingestion Task',
+      'PDF, DOCX & TXT Text Extraction',
+      'Overlapping Text Chunking with Section Detection',
+      'Conversation, Message & Citation Models',
+      'Query Audit Logs & Analytics',
+      'Assistant, Documents, Search & Analytics Pages (mock data)'
+    ],
+    architectureHighlights: [
+      'Every document, chunk and query is scoped to an organisation for multi-tenant isolation',
+      'Ingestion runs asynchronously in a Celery worker, keeping uploads responsive',
+      'Chunk model reserves a 1536-dimension pgvector field for future semantic search'
+    ],
+    featured: true
+  }
+];
+
+/** Earlier projects, not shown in the project lineup; kept for reference. */
+export const otherProjects: Project[] = [
   {
     id: 'corridor-b2b',
     title: 'CORRIDOR B2B Trade & Commerce Platform',

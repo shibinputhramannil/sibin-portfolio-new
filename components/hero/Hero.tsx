@@ -44,7 +44,8 @@ export function Hero() {
       <Container className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
         <div>
           <p style={step(0)} className="hero-in font-mono text-xs font-medium uppercase tracking-wider text-muted">
-            {site.role} · {site.location.short}
+            {/* Keep the location together so a narrow screen breaks at the separator. */}
+            {site.role} · <span className="whitespace-nowrap">{site.location.short}</span>
           </p>
           <p style={step(1)} className="hero-settle mt-5 font-serif text-5xl italic text-heading md:text-6xl">
             Hello, I&apos;m Sibin.
@@ -60,7 +61,7 @@ export function Hero() {
             </Accent>
           </h1>
           <p style={step(3)} className="hero-settle mt-6 max-w-xl text-lg leading-relaxed text-text md:text-xl">
-            Full Stack Developer focused on Python, Django, REST APIs, React, PostgreSQL, and database-driven applications. Experienced in developing ERP/CRM systems, machine learning pipelines, and production web services.
+            Python Full Stack Developer focused on Django, REST APIs, React, PostgreSQL, and database-driven applications. Experienced in developing ERP/CRM systems, machine learning pipelines, and production web services.
           </p>
 
           <div style={step(4)} className="hero-in mt-8 flex flex-wrap items-center gap-3">

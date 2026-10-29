@@ -16,7 +16,7 @@ export function Experience() {
           Professional engineering <Accent>journey.</Accent>
         </>
       }
-      description="Documented internships demonstrating real software contributions, client requirements, and machine learning development."
+      description="Current work, internships and earlier analyst experience across backend development, CRM systems, data analysis and machine learning."
     >
       <ol className="space-y-12 md:space-y-0">
         {experiences.map((exp, index) => {
@@ -33,13 +33,20 @@ export function Experience() {
                 <p className="font-mono text-xs text-muted">
                   <time dateTime={exp.startDate}>{exp.period.split('–')[0].trim()}</time>
                   {' – '}
-                  <time dateTime={exp.endDate}>{exp.period.split('–')[1]?.trim()}</time>
+                  {/* A current role has no end date, only "Present". */}
+                  {exp.endDate ? (
+                    <time dateTime={exp.endDate}>{exp.period.split('–')[1]?.trim()}</time>
+                  ) : (
+                    exp.period.split('–')[1]?.trim()
+                  )}
                 </p>
                 <p className="mt-2 text-base font-semibold text-heading">{exp.company}</p>
-                <p className="mt-1 inline-flex items-center gap-1.5 text-sm text-muted">
-                  <MapPin className="size-3.5" aria-hidden="true" />
-                  {exp.location}
-                </p>
+                {exp.location && (
+                  <p className="mt-1 inline-flex items-center gap-1.5 text-sm text-muted">
+                    <MapPin className="size-3.5" aria-hidden="true" />
+                    {exp.location}
+                  </p>
+                )}
                 {exp.status && <p className="mt-1 text-sm text-muted">{exp.status}</p>}
               </div>
 

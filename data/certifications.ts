@@ -19,7 +19,6 @@ export const certifications: CertificationItem[] = [
       'Git Version Control & GitHub Collaborative Workflows',
       'Web Deployment Concepts & Server Environments'
     ],
-    credentialId: 'UCSL-PFS-2026-09',
     image: '/certificates/python-full-stack-developer.svg'
   },
   {
@@ -38,7 +37,6 @@ export const certifications: CertificationItem[] = [
       'ReactJS User Interface Coordination',
       'Business Requirement Analysis & Pragmatic Solutions'
     ],
-    credentialId: 'UCSL-CRMI-2026',
     image: '/certificates/crm-developer-internship.svg'
   },
   {
@@ -57,7 +55,6 @@ export const certifications: CertificationItem[] = [
       'Backpropagation Algorithm Implementation',
       'Model Accuracy Evaluation & Dimensionality Optimization'
     ],
-    credentialId: 'IS-AI-2026-08',
     image: '/certificates/artificial-intelligence-internship.svg'
   }
 ];

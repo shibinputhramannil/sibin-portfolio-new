@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GraduationCap, MapPin } from 'lucide-react';
-import { education } from '@/data/experience';
+import { education, training } from '@/data/experience';
 import { Section } from '@/components/ui/Section';
 import { Accent } from '@/components/ui/SectionHeading';
 
@@ -12,7 +12,7 @@ export function Education() {
       eyebrow="Education"
       title={
         <>
-          Academic <Accent>background.</Accent>
+          Education &amp; <Accent>training.</Accent>
         </>
       }
     >
@@ -29,6 +29,7 @@ export function Education() {
                   {education.location}
                 </span>
               )}
+              {education.year && <span className="font-mono text-xs">{education.year}</span>}
               {education.status && <span>{education.status}</span>}
             </div>
           </div>
@@ -43,6 +44,34 @@ export function Education() {
               </li>
             ))}
           </ul>
+        )}
+
+        {training.length > 0 && (
+          <div className="mt-6 border-t border-line pt-6">
+            <h3 className="font-mono text-xs font-medium uppercase tracking-wider text-muted">Training</h3>
+            <ul className="mt-3 space-y-4">
+              {training.map((item) => (
+                <li key={item.title}>
+                  <p className="text-base font-semibold text-heading">{item.title}</p>
+                  <p className="mt-1 text-sm text-text">
+                    {item.provider}
+                    {item.location && `, ${item.location}`}
+                  </p>
+                  <p className="mt-1 font-mono text-xs text-muted">
+                    {item.startDate && item.endDate ? (
+                      <>
+                        <time dateTime={item.startDate}>{item.period.split('–')[0].trim()}</time>
+                        {' – '}
+                        <time dateTime={item.endDate}>{item.period.split('–')[1]?.trim()}</time>
+                      </>
+                    ) : (
+                      item.period
+                    )}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </Section>

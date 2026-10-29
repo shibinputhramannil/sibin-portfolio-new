@@ -104,16 +104,19 @@ export function Navbar() {
       <Container className="flex items-center justify-between gap-4">
         <a
           href="#home"
-          aria-label={`${site.name}, back to top`}
           className="group flex shrink-0 items-center gap-2.5 rounded-lg font-semibold tracking-tight text-heading"
         >
+          {/* Accessible name = visible wordmark + hidden suffix ("Sibin P, back to top"),
+              so the spoken name contains the visible label (WCAG 2.5.3). The name is
+              uppercased with CSS so screen readers do not spell it letter by letter. */}
           <span
             aria-hidden="true"
             className="flex size-8 items-center justify-center rounded-lg bg-heading font-mono text-sm text-background transition-transform duration-200 motion-safe:group-hover:scale-105"
           >
             {site.initials}
           </span>
-          <span className="text-base leading-none">{site.wordmark}</span>
+          <span className="text-base uppercase leading-none">{site.name}</span>
+          <span className="sr-only">, back to top</span>
         </a>
 
         <nav aria-label="Primary" className="hidden lg:block">

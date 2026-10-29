@@ -115,7 +115,7 @@ export function ContactForm() {
           placeholder="e.g. Alex Smith"
           aria-invalid={Boolean(errors.name)}
           aria-describedby={describedBy('name')}
-          className={cn(inputStyles, errors.name ? 'border-danger' : 'border-line')}
+          className={cn(inputStyles, errors.name ? 'border-danger' : 'border-line-input')}
         />
         {fieldError('name')}
       </div>
@@ -133,7 +133,7 @@ export function ContactForm() {
           onChange={update('subject')}
           aria-invalid={Boolean(errors.subject)}
           aria-describedby={describedBy('subject')}
-          className={cn(inputStyles, errors.subject ? 'border-danger' : 'border-line')}
+          className={cn(inputStyles, errors.subject ? 'border-danger' : 'border-line-input')}
         />
         {fieldError('subject')}
       </div>
@@ -152,7 +152,7 @@ export function ContactForm() {
           placeholder="Hi Sibin, I came across your portfolio and wanted to discuss..."
           aria-invalid={Boolean(errors.message)}
           aria-describedby={describedBy('message', 'message-hint')}
-          className={cn(inputStyles, 'resize-y', errors.message ? 'border-danger' : 'border-line')}
+          className={cn(inputStyles, 'resize-y', errors.message ? 'border-danger' : 'border-line-input')}
         />
         <p id="message-hint" className="mt-1.5 text-right font-mono text-[11px] text-muted">
           {messageLength}/{LIMITS.messageMax}

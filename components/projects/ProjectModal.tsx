@@ -8,6 +8,7 @@ import { Chip } from '@/components/ui/Chip';
 import { GradientButton } from '@/components/ui/GradientButton';
 import { GithubIcon } from '@/components/ui/icons';
 import { formatStatus, githubLinkLabel } from './projectLabels';
+import { ProjectContributions } from './ProjectContributions';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -31,6 +32,7 @@ export function ProjectModal({ project, onClose, returnFocusRef }: ProjectModalP
           <div className="flex flex-wrap gap-2">
             <Chip size="sm">{formatStatus(project.status)}</Chip>
             <Chip size="sm">{project.category}</Chip>
+            {project.context && <Chip size="sm">{project.context}</Chip>}
           </div>
         )
       }
@@ -38,6 +40,8 @@ export function ProjectModal({ project, onClose, returnFocusRef }: ProjectModalP
       {project && (
         <div className="space-y-8">
           <p className="text-base leading-relaxed text-text">{project.longDescription || project.description}</p>
+
+          <ProjectContributions project={project} as="h3" headingClassName={subheading} />
 
           {project.documentedModules && project.documentedModules.length > 0 && (
             <section>

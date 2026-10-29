@@ -8,21 +8,18 @@ import { Accent } from '@/components/ui/SectionHeading';
 import { Tabs, tabPanelProps, useRovingTabs } from '@/components/ui/Tabs';
 import { cn } from '@/lib/utils';
 import { useSlidingIndicator } from '@/components/motion/useSlidingIndicator';
-import { ProjectThumbnail } from './ProjectThumbnail';
 import { ProjectDetail } from './ProjectDetail';
 import { ProjectModal } from './ProjectModal';
 
 const FILTER_ID = 'project-filter';
 const PICKER_ID = 'project';
 
-const categories: ProjectCategory[] = ['All', 'Full Stack', 'Backend', 'AI / ML'];
-const filterItems = categories.map((category) => ({ value: category, label: category }));
+// The lineup's own order (data/projects.ts); numbering follows it.
+const orderedProjects = projects;
 
-// The featured project leads the list; numbering follows this order.
-const orderedProjects = [
-  ...projects.filter((p) => p.id === 'icorp-erp'),
-  ...projects.filter((p) => p.id !== 'icorp-erp')
-];
+// Only categories that have projects, in order of first appearance.
+const categories: ProjectCategory[] = ['All', ...new Set(orderedProjects.map((p) => p.category))];
+const filterItems = categories.map((category) => ({ value: category, label: category }));
 
 export function Projects() {
   const [category, setCategory] = React.useState<ProjectCategory>('All');
@@ -61,7 +58,7 @@ export function Projects() {
       eyebrow="Featured Work"
       title={
         <>
-          Real projects &amp; <Accent>production architectures.</Accent>
+          Selected Projects &amp; <Accent>Engineering Work</Accent>
         </>
       }
       description="Engineered systems demonstrating database modeling, REST API design, enterprise ERP/CRM logic, and applied machine learning."
@@ -75,7 +72,7 @@ export function Projects() {
       />
 
       <div {...tabPanelProps(FILTER_ID, category, { focusable: false })} className="mt-6">
-        <div ref={pickerRef} role="tablist" aria-label="Projects" className="relative grid grid-cols-4 gap-2 sm:grid-cols-7">
+        <div ref={pickerRef} role="tablist" aria-label="Projects" className="relative grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
           {/* Gradient frame that slides to the selected project (replaces the static frame once measured). */}
           <span
             ref={pickerIndicatorRef}
@@ -91,26 +88,21 @@ export function Projects() {
                 {...getTabProps(i)}
                 className={cn(
                   'picker-tab group relative cursor-pointer rounded-lg p-0.5 text-left transition-[transform,background-color] duration-(--duration-base) ease-soft',
-                  // Unselected thumbnails lift on hover; the selected one stays aligned with the sliding frame.
+                  // Unselected tabs lift on hover; the selected one stays aligned with the sliding frame.
                   isSelected ? 'bg-accent-gradient' : 'bg-line hover:bg-line-strong motion-safe:hover:-translate-y-0.5'
                 )}
               >
-                <span className="relative block overflow-hidden rounded-[calc(var(--radius-lg)-2px)]">
-                  <ProjectThumbnail
-                    project={project}
-                    index={number}
-                    size="sm"
-                    className={cn('h-12 md:h-20', !isSelected && 'opacity-60 transition-opacity duration-(--duration-base) group-hover:opacity-100')}
-                  />
+                {/* The visible number and short name are the tab's accessible name ("01 IcorpERP"). */}
+                <span className="flex h-full flex-col gap-1 rounded-[calc(var(--radius-lg)-2px)] bg-background px-3 py-2.5">
+                  <span className="font-mono text-[11px] text-muted">{String(number + 1).padStart(2, '0')}</span>
                   <span
-                    aria-hidden="true"
-                    className="absolute bottom-1 left-1 rounded bg-background/85 px-1.5 py-0.5 font-mono text-[11px] text-heading"
+                    className={cn(
+                      'text-sm font-medium leading-snug transition-colors duration-(--duration-base)',
+                      isSelected ? 'text-heading' : 'text-muted group-hover:text-heading'
+                    )}
                   >
-                    {String(number + 1).padStart(2, '0')}
+                    {project.shortTitle ?? project.title}
                   </span>
-                </span>
-                <span className="sr-only">
-                  {String(number + 1).padStart(2, '0')}. {project.title}
                 </span>
               </button>
             );

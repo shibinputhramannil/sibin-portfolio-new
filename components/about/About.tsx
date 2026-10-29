@@ -52,13 +52,16 @@ export function About() {
     >
       <div className="space-y-5 text-base leading-relaxed text-text md:text-lg">
         <p className="text-heading">
-          I am a Full Stack Developer with a solid foundation in backend development, relational databases, applied artificial intelligence, and client-side web technologies. My work centers on creating practical, maintainable applications that solve concrete business operational requirements.
+          I am a Python Full Stack Developer with a solid foundation in backend development, relational databases, applied artificial intelligence, and client-side web technologies. My work centers on creating practical, maintainable applications that solve concrete business operational requirements.
+        </p>
+        <p>
+          I currently work at AX Ventures in Calicut, on the Django REST Framework and PostgreSQL backend of BYCE, a gym membership platform.
         </p>
         <p>
           My hands-on experience includes developing live CRM systems at Upcode Software Labs, where I worked directly with business specifications, implemented Django REST Framework endpoints, managed PostgreSQL database schemas, and interfaced with ReactJS.
         </p>
         <p>
-          I have engineered two core enterprise systems: a production-ready enterprise ERP platform (<span className="font-semibold text-heading">IcorpERP</span>) unifying multi-tenant inventory, sales, purchasing, double-entry finance, and AI assistance, alongside a dedicated <span className="font-semibold text-heading">Enterprise CRM Platform</span> with automated pipelines and Twilio voice integrations.
+          I engineered a production-ready enterprise ERP platform (<span className="font-semibold text-heading">IcorpERP</span>) unifying multi-tenant inventory, sales, purchasing, double-entry finance, and AI assistance, and contributed to a team-built <span className="font-semibold text-heading">Enterprise CRM Platform</span> during my Upcode internship, delivering its activities, companies, and support-ticket features.
         </p>
         <p>
           In parallel, during my Artificial Intelligence internship at Internship Studio, I engineered machine learning pipelines from fundamental principles—implementing PCA surrogate covariance algorithms for facial feature extraction and training multi-layer neural networks via backpropagation.
