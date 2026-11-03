@@ -1,10 +1,12 @@
 'use client';
 
 import * as React from 'react';
-import { Building2, Calendar } from 'lucide-react';
+import Image from 'next/image';
+import { Building2, Calendar, FileText } from 'lucide-react';
 import { CertificationItem } from '@/types';
 import { Modal } from '@/components/ui/Modal';
 import { Chip } from '@/components/ui/Chip';
+import { GradientButton } from '@/components/ui/GradientButton';
 import { site } from '@/lib/site';
 
 interface CertificateModalProps {
@@ -14,7 +16,8 @@ interface CertificateModalProps {
 }
 
 // No credential IDs are stored or shown: none could be confirmed against an
-// issued certificate. Add one only from the certificate itself.
+// issued certificate. Add one only from the certificate itself. Likewise only a
+// scan of the issued certificate is shown, never the illustrative `image`.
 export function CertificateModal({ cert, onClose, returnFocusRef }: CertificateModalProps) {
   return (
     <Modal
@@ -33,6 +36,28 @@ export function CertificateModal({ cert, onClose, returnFocusRef }: CertificateM
     >
       {cert && (
         <div className="space-y-8">
+          {cert.scan && (
+            <figure className="space-y-4">
+              <Image
+                src={cert.scan.src}
+                alt={cert.scan.alt}
+                width={cert.scan.width}
+                height={cert.scan.height}
+                sizes="(min-width: 672px) 622px, calc(100vw - 4rem)"
+                className="h-auto w-full rounded-lg border border-line"
+              />
+              {cert.pdf && (
+                <figcaption>
+                  <GradientButton href={cert.pdf} external size="sm">
+                    <FileText className="size-4" aria-hidden="true" />
+                    <span>Original certificate (PDF)</span>
+                    <span className="sr-only">(opens in a new tab)</span>
+                  </GradientButton>
+                </figcaption>
+              )}
+            </figure>
+          )}
+
           <dl className="grid grid-cols-1 gap-4 rounded-lg border border-line bg-background p-5 text-sm sm:grid-cols-3">
             <div>
               <dt className="font-mono text-xs uppercase tracking-wider text-muted">Awarded to</dt>
@@ -57,7 +82,7 @@ export function CertificateModal({ cert, onClose, returnFocusRef }: CertificateM
           <p className="text-base leading-relaxed text-text">{cert.description}</p>
 
           <section>
-            <h3 className="font-mono text-xs font-medium uppercase tracking-wider text-muted">Topics &amp; Curriculum</h3>
+            <h3 className="font-mono text-xs font-medium uppercase tracking-wider text-muted">Topics &amp; Technologies</h3>
             <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 text-sm text-text sm:grid-cols-2">
               {cert.topics.map((topic) => (
                 <li key={topic} className="flex gap-2">

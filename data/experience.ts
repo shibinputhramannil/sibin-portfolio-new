@@ -1,6 +1,7 @@
 import { ExperienceItem, EducationItem, TrainingItem } from '@/types';
 
-// Most recent first. Roles, employers and dates follow the CV (Sibin_P_Resume, Oct 2026);
+// Most recent first. Roles, employers and dates follow the CV (Sibin_P_Resume, Oct 2026),
+// except the Upcode internship, which follows its issued certificate (dated 20/10/2026);
 // deliverables are limited to what the source code, commits or project documents support.
 export const experiences: ExperienceItem[] = [
   {
@@ -20,16 +21,16 @@ export const experiences: ExperienceItem[] = [
     technologies: ['Python', 'Django REST Framework', 'PostgreSQL']
   },
   {
-    id: 'crm-intern-upcode',
-    role: 'CRM Developer Intern',
-    company: 'Upcode Software Labs Pvt. Ltd.',
-    location: 'Kerala, India',
-    period: '24 July 2026 – 18 September 2026',
-    startDate: '2026-07-24',
-    endDate: '2026-09-18',
+    id: 'software-developer-intern-upcode',
+    role: 'Software Developer Intern',
+    company: 'Upcode Software Labs L.L.P',
+    location: 'Kannur, Kerala',
+    period: '29 December 2025 – 2 September 2026',
+    startDate: '2025-12-29',
+    endDate: '2026-09-02',
     status: 'Completed',
     description:
-      'Contributed directly to the engineering and development of a live production-grade CRM project, translating operational business requirements into clean REST APIs and database models.',
+      'Worked on the live Full Stack Development project at Upcode, a team-built CRM, translating business requirements into REST APIs and database models.',
     keyDeliverables: [
       'Engineered backend endpoints and relational schemas using Django and Django REST Framework',
       'Implemented data persistence and schema relationships in PostgreSQL',
@@ -56,22 +57,6 @@ export const experiences: ExperienceItem[] = [
       'Implemented confidence thresholding for rejecting unregistered facial profiles'
     ],
     technologies: ['Python', 'NumPy', 'OpenCV', 'Matplotlib', 'PCA', 'ANN', 'Jupyter']
-  },
-  {
-    id: 'crm-data-analyst-image',
-    role: 'CRM Data Analyst',
-    company: 'Image Mobiles & Computers',
-    location: 'Perinthalmanna, Kerala',
-    period: 'September 2024 – October 2025',
-    startDate: '2024-09',
-    endDate: '2025-10',
-    status: 'Completed',
-    description: 'Analyzed sales, lead and customer data, and studied how a CRM platform is built.',
-    keyDeliverables: [
-      'Analyzed sales, leads and customer data using Excel and Power BI',
-      'Studied the build of the REDYRECKNOR CRM platform, including how its modules and database are structured'
-    ],
-    technologies: ['Excel', 'Power BI', 'REDYRECKNOR CRM']
   }
 ];
 
@@ -91,11 +76,5 @@ export const training: TrainingItem[] = [
     period: 'Aug 2023 – May 2024',
     startDate: '2023-08',
     endDate: '2024-05'
-  },
-  {
-    title: 'Python Full Stack Development Course',
-    provider: 'Upcode Software Labs Pvt. Ltd.',
-    // Duration as stated on the CV; exact dates are not confirmed.
-    period: '7 months'
   }
 ];

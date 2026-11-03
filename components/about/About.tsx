@@ -58,7 +58,7 @@ export function About() {
           I currently work at AX Ventures in Calicut, on the Django REST Framework and PostgreSQL backend of BYCE, a gym membership platform.
         </p>
         <p>
-          My hands-on experience includes developing live CRM systems at Upcode Software Labs, where I worked directly with business specifications, implemented Django REST Framework endpoints, managed PostgreSQL database schemas, and interfaced with ReactJS.
+          My hands-on experience includes a Software Developer internship at Upcode Software Labs, where I worked on a live CRM project directly from business specifications, implemented Django REST Framework endpoints, managed PostgreSQL database schemas, and interfaced with ReactJS.
         </p>
         <p>
           I engineered a production-ready enterprise ERP platform (<span className="font-semibold text-heading">IcorpERP</span>) unifying multi-tenant inventory, sales, purchasing, double-entry finance, and AI assistance, and contributed to a team-built <span className="font-semibold text-heading">Enterprise CRM Platform</span> during my Upcode internship, delivering its activities, companies, and support-ticket features.

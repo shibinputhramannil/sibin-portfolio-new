@@ -2,42 +2,28 @@ import { CertificationItem } from '@/types';
 
 export const certifications: CertificationItem[] = [
   {
-    id: 'cert-python-full-stack',
-    title: 'Python Full Stack Developer',
-    issuer: 'Upcode Software Labs',
-    period: '12 January 2026 – 18 September 2026',
-    issueDate: 'September 2026',
+    // Every field follows the issued certificate (dated 20/10/2026).
+    id: 'cert-upcode-internship',
+    title: 'Software Developer Internship',
+    issuer: 'Upcode Software Labs L.L.P',
+    period: '29 December 2025 – 2 September 2026',
+    issueDate: 'October 2026',
     status: 'Completed',
     description:
-      'Rigorous multi-month full stack software engineering curriculum covering end-to-end web architecture, relational database management, and professional developer tooling.',
+      'Certifies work as a Software Developer Intern on the live Full Stack Development project at Upcode, with assigned projects completed and important deadlines met.',
     topics: [
-      'Python Programming & Object-Oriented Design',
-      'Django & Django REST Framework (DRF)',
-      'Frontend Development (HTML, CSS, JavaScript, React)',
-      'Relational Database Modeling with PostgreSQL & MySQL',
-      'REST API Design, Serialization & Postman Testing',
-      'Git Version Control & GitHub Collaborative Workflows',
-      'Web Deployment Concepts & Server Environments'
+      'Live project in Full Stack Development',
+      'Frontend: HTML, CSS, Bootstrap, JavaScript, ReactJS, Redux, Next.js, TypeScript',
+      'Backend: Python, Django, Flask, RDBMS',
+      'Version control: Git'
     ],
-    image: '/certificates/python-full-stack-developer.svg'
-  },
-  {
-    id: 'cert-crm-internship',
-    title: 'CRM Developer Internship',
-    issuer: 'Upcode Software Labs Pvt. Ltd.',
-    period: '24 July 2026 – 18 September 2026',
-    issueDate: 'September 2026',
-    status: 'Completed',
-    description:
-      'Hands-on industry internship focused on enterprise CRM architecture, relational business entity modeling, and RESTful web service implementation.',
-    topics: [
-      'Live CRM System Development',
-      'Django REST Framework Backend Services',
-      'PostgreSQL Relational Schema Integration',
-      'ReactJS User Interface Coordination',
-      'Business Requirement Analysis & Pragmatic Solutions'
-    ],
-    image: '/certificates/crm-developer-internship.svg'
+    scan: {
+      src: '/certificates/upcode-software-developer-internship.webp',
+      width: 1600,
+      height: 1132,
+      alt: 'Internship certificate from Upcode Software Labs L.L.P, dated 20/10/2026, certifying that Sibin P worked as a Software Developer Intern from 29/12/2025 to 02/09/2026.'
+    },
+    pdf: '/certificates/upcode-software-developer-internship.pdf'
   },
   {
     id: 'cert-ai-internship',

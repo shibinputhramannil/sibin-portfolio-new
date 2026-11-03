@@ -74,7 +74,12 @@ export interface CertificationItem {
   description: string;
   topics: string[];
   credentialId?: string;
+  /** Illustrative artwork, not the issued certificate; never shown as one. */
   image?: string;
+  /** Image of the issued certificate, shown in the details dialog. */
+  scan?: { src: string; width: number; height: number; alt: string };
+  /** The issued certificate as a PDF, linked from the details dialog. */
+  pdf?: string;
   status: 'Verified Credential' | 'Completed';
 }
 

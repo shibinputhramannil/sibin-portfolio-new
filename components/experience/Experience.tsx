@@ -16,7 +16,7 @@ export function Experience() {
           Professional engineering <Accent>journey.</Accent>
         </>
       }
-      description="Current work, internships and earlier analyst experience across backend development, CRM systems, data analysis and machine learning."
+      description="Current work and internships across backend development, CRM systems and machine learning."
     >
       <ol className="space-y-12 md:space-y-0">
         {experiences.map((exp, index) => {

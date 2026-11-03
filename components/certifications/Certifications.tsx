@@ -22,9 +22,9 @@ export function Certifications() {
           Qualifications &amp; <Accent>training.</Accent>
         </>
       }
-      description="Technical certifications covering full stack Python web engineering, CRM system development, and artificial intelligence implementations."
+      description="Certificates from my software developer internship at Upcode Software Labs and my artificial intelligence internship at Internship Studio."
     >
-      <ul className="grid grid-cols-1 gap-5 md:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {certifications.map((cert, index) => (
           // The <li> carries the scroll reveal; the inner card owns hover motion,
           // so the reveal's long transition never slows the hover response.
