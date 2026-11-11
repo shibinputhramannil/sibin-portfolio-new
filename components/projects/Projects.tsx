@@ -72,7 +72,7 @@ export function Projects() {
       />
 
       <div {...tabPanelProps(FILTER_ID, category, { focusable: false })} className="mt-6">
-        <div ref={pickerRef} role="tablist" aria-label="Projects" className="relative grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+        <div ref={pickerRef} role="tablist" aria-label="Projects" className="relative grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
           {/* Gradient frame that slides to the selected project (replaces the static frame once measured). */}
           <span
             ref={pickerIndicatorRef}

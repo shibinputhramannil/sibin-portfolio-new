@@ -168,7 +168,7 @@ export const projects: Project[] = [
   {
     id: 'transt-ecommerce',
     title: 'TRANST Botanical E-Commerce Platform',
-    shortTitle: 'TRANST',
+    shortTitle: 'TRANST Store',
     tagline: 'Production-Ready Botanical Lifestyle E-Commerce with Django REST & Redux Toolkit',
     description:
       'A production-ready botanical lifestyle e-commerce application engineered with Django REST Framework and React/Redux Toolkit, featuring stateless JWT auth, server-authoritative cart validation, and atomic checkout transactions.',
@@ -205,6 +205,37 @@ export const projects: Project[] = [
       'Axios request/response interceptors automatically manage token refreshing and session persistence'
     ],
     githubUrl: 'https://github.com/shibinputhramannil/transt-ecommerce',
+    featured: true
+  },
+  {
+    // Described from the live site (checked Nov 2026); no public repository exists yet.
+    id: 'transt-website',
+    title: 'TRANST Company Website',
+    shortTitle: 'TRANST Website',
+    tagline: 'Live multi-page website for an AI software and web development brand',
+    description:
+      'A live React website for TRANST, presenting five services (AI-powered software, intelligent automation, AI agents, custom web applications and AI integration), a four-step delivery process, a filterable product catalog, and a contact page with an enquiry form, email and WhatsApp links. The catalog shows placeholder entries until products are published.',
+    longDescription:
+      'The TRANST website is a single-page React application built with Vite and React Router, with Home, Products, Services, About and Contact pages. The home page introduces the brand around understanding, deciding and acting, then outlines five services and a four-step process (Discover, Design, Build, Deliver & evolve). The products page has a catalog with category filters; its entries are clearly marked placeholders until real products are published. Each page ships search and sharing metadata, including a canonical URL, Open Graph and Twitter tags, and Organization JSON-LD with a contact point, and visitors without JavaScript still get the contact details.',
+    category: 'Frontend',
+    status: 'ONGOING',
+    technologies: ['React', 'React Router', 'Vite', 'JavaScript', 'Vercel'],
+    documentedModules: [
+      'Home Page with Understand, Decide & Act Overview',
+      'Services: AI-Powered Software, Intelligent Automation, AI Agents, Custom Web Applications & AI Integration',
+      'Four-Step Process: Discover, Design, Build, Deliver & Evolve',
+      'Product Catalog with Category Filters (placeholder entries until products are published)',
+      'About Page',
+      'Contact Page with Enquiry Form, Email & WhatsApp Links',
+      'SEO Metadata: Canonical URL, Open Graph & Twitter Tags, Organization JSON-LD',
+      'No-JavaScript Fallback with Contact Details'
+    ],
+    architectureHighlights: [
+      'Client-side routing with React Router across five pages',
+      'Page titles, descriptions and contact details kept in data modules, separate from components',
+      'Site domain for canonical and sharing URLs set at build time through an environment variable'
+    ],
+    liveUrl: 'https://transt-website.vercel.app/',
     featured: true
   },
   {

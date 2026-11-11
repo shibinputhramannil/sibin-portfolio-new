@@ -55,7 +55,7 @@ export const social = {
   }
 } as const;
 
-const RESUME_VERSION = '20261102';
+const RESUME_VERSION = '20261111';
 
 export const resume = {
   pdfPath: '/resume/sibin-p-full-stack-developer-resume.pdf',
