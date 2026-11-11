@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Database, Server, Cpu, ShieldCheck, GitBranch, ArrowUpRight } from 'lucide-react';
+import { Database, Server, Cpu, ShieldCheck, GitBranch, ArrowUpRight, Globe } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icons';
 import { Section } from '@/components/ui/Section';
 import { Accent } from '@/components/ui/SectionHeading';
@@ -35,7 +35,8 @@ const focusAreas = [
 
 const socialLinks = [
   { ...social.github, Icon: GithubIcon },
-  { ...social.linkedin, Icon: LinkedinIcon }
+  { ...social.linkedin, Icon: LinkedinIcon },
+  { ...social.website, Icon: Globe }
 ];
 
 export function About() {

@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Mail, Phone, MapPin, Copy, Check, AlertCircle, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Copy, Check, AlertCircle, ArrowUpRight, Globe } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icons';
 import { Section } from '@/components/ui/Section';
 import { Accent } from '@/components/ui/SectionHeading';
@@ -87,7 +87,8 @@ export function Contact() {
             </li>
             {[
               { ...social.github, Icon: GithubIcon },
-              { ...social.linkedin, Icon: LinkedinIcon }
+              { ...social.linkedin, Icon: LinkedinIcon },
+              { ...social.website, Icon: Globe }
             ].map(({ label, handle, href, Icon }) => (
               <li key={href} className="py-4">
                 <p className={rowLabel}>{label}</p>

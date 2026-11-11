@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArrowRight, Mail, Download, FileText } from 'lucide-react';
+import { ArrowRight, Mail, Download, FileText, Globe } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/ui/icons';
 import { GradientButton } from '@/components/ui/GradientButton';
 import { Container } from '@/components/ui/Container';
@@ -109,6 +109,15 @@ export function Hero() {
                 className="rounded-lg p-2 text-muted transition-colors duration-(--duration-fast) hover:bg-surface hover:text-heading"
               >
                 <LinkedinIcon className="size-4" aria-hidden="true" />
+              </a>
+              <a
+                href={social.website.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Personal website of ${site.name} (opens in a new tab)`}
+                className="rounded-lg p-2 text-muted transition-colors duration-(--duration-fast) hover:bg-surface hover:text-heading"
+              >
+                <Globe className="size-4" aria-hidden="true" />
               </a>
             </div>
           </div>

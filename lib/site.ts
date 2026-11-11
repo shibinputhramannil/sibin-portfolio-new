@@ -52,10 +52,16 @@ export const social = {
     label: 'LinkedIn',
     handle: 'linkedin.com/in/shibi-ii-a23366437',
     href: 'https://www.linkedin.com/in/shibi-ii-a23366437/'
+  },
+  // Personal website (TRANST); also linked in the resume header.
+  website: {
+    label: 'Website',
+    handle: 'transt-website.vercel.app',
+    href: 'https://transt-website.vercel.app/'
   }
 } as const;
 
-const RESUME_VERSION = '20261111';
+const RESUME_VERSION = '20261111-2';
 
 export const resume = {
   pdfPath: '/resume/sibin-p-full-stack-developer-resume.pdf',

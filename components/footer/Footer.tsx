@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, ArrowUpRight, Globe } from 'lucide-react';
 import { GithubIcon } from '@/components/ui/icons';
 import { Container } from '@/components/ui/Container';
 import { contact, navItems, site, social, telHref } from '@/lib/site';
@@ -77,6 +77,19 @@ export function Footer() {
                 >
                   <GithubIcon className="size-3.5 shrink-0" aria-hidden="true" />
                   <span>GitHub Profile</span>
+                  <ArrowUpRight className="size-3 text-muted" aria-hidden="true" />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={social.website.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-text transition-colors duration-200 hover:text-heading"
+                >
+                  <Globe className="size-3.5 shrink-0 text-muted" aria-hidden="true" />
+                  <span>Personal Website</span>
                   <ArrowUpRight className="size-3 text-muted" aria-hidden="true" />
                   <span className="sr-only">(opens in a new tab)</span>
                 </a>
